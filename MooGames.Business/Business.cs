@@ -5,70 +5,89 @@ public class Business
 
     public void Run()
     {
-        
-        bool playOn = true;
+        // taking input: user name, declaring game loop
+        // *** changed gameloop to "gameIsActive"
+        bool gameIsActive = true;
         Console.WriteLine("Enter your user name:\n");
         string name = Console.ReadLine();
 
-        while (playOn)
+        while (gameIsActive)
         {
-            string goal = makeGoal();
+            // generate random number for the player to guess
+            // *** changed method name from "makeGoal" to "makeRandomGameNumber"
+            // *** also changed variable name from "goal" to "correctGameNumber"
+            string correctGameNumber = makeRandomGameNumber();
 
             Console.WriteLine("New game:\n");
             // comment out or remove next line to play real games!
-            Console.WriteLine("For practice, number is: " + goal + "\n");
-            string guess = Console.ReadLine();
+            Console.WriteLine("For practice, number is: " + correctGameNumber + "\n");
+            
+            // input from user: a guessed number
+            // *** changed variable name from "guess" to "guessedNumber"
+            string guessedNumber = Console.ReadLine();
+            // *** changed variable name from "nGuess" to "numberOfGuesses"
+            int numberOfGuesses = 1;
 
-            int nGuess = 1;
-            string bbcc = checkBC(goal, guess);
-            Console.WriteLine(bbcc + "\n");
-            while (bbcc != "BBBB,")
+            //calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
+            // *** changed the method's name from "checkBC" to "checkUserGuess"
+            ///*** changed variable name from "bbcc" to "userGuessResault"
+            string userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
+            
+            // Write the result. IDEA: put this in the checkUserGuess method?
+            Console.WriteLine(userGuessResault + "\n");
+
+            // Keep on asking for guesses until the users answer is correct
+            // IDEA: make method that takes user guess and give resault
+            while (userGuessResault != "BBBB,")
             {
-                nGuess++;
-                guess = Console.ReadLine();
-                Console.WriteLine(guess + "\n");
-                bbcc = checkBC(goal, guess);
-                Console.WriteLine(bbcc + "\n");
+                //IDEA create variable correctAnswer = "BBBB"
+                numberOfGuesses++;
+                guessedNumber = Console.ReadLine();
+                Console.WriteLine(guessedNumber + "\n");
+                userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
+                Console.WriteLine(userGuessResault + "\n");
             }
+
+            
             StreamWriter output = new StreamWriter("result.txt", append: true);
-            output.WriteLine(name + "#&#" + nGuess);
+            output.WriteLine(name + "#&#" + numberOfGuesses);
             output.Close();
             showTopList();
-            Console.WriteLine("Correct, it took " + nGuess + " guesses\n Continue?");
+            Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\n Continue?");
             string answer = Console.ReadLine();
             if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
             {
-                playOn = false;
+                gameIsActive = false;
             }
         }
 
-        static string makeGoal()
+        static string makeRandomGameNumber()
         {
             Random randomGenerator = new Random();
-            string goal = "";
+            string correctGameNumber = "";
             for (int i = 0; i < 4; i++)
             {
                 int random = randomGenerator.Next(10);
                 string randomDigit = "" + random;
-                while (goal.Contains(randomDigit))
+                while (correctGameNumber.Contains(randomDigit))
                 {
                     random = randomGenerator.Next(10);
                     randomDigit = "" + random;
                 }
-                goal = goal + randomDigit;
+                correctGameNumber = correctGameNumber + randomDigit;
             }
-            return goal;
+            return correctGameNumber;
         }
 
-        static string checkBC(string goal, string guess)
+        static string checkUserGuess(string correctGameNumber, string guessedNumber)
         {
             int cows = 0, bulls = 0;
-            guess += "    ";     // if player entered less than 4 chars
+            guessedNumber += "    ";     // if player entered less than 4 chars
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if (goal[i] == guess[j])
+                    if (correctGameNumber[i] == guessedNumber[j])
                     {
                         if (i == j)
                         {

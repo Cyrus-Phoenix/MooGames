@@ -1,9 +1,13 @@
-﻿namespace MooGames.Business;
+﻿using MooGames.Data.Classes;
+
+namespace MooGames.Business;
+
 
 public class Business
 {
 
-    public void Run()
+    public void RunGame()
+        ///TODO:Test all parts of the game
     {
         // taking input: user name, declaring game loop
         // *** changed gameloop to "gameIsActive"
@@ -38,6 +42,7 @@ public class Business
 
             // Keep on asking for guesses until the users answer is correct
             // IDEA: make method that takes user guess and give resault
+            ///TODO: make method that takes user guess and give resault
             while (userGuessResault != "BBBB,")
             {
                 //IDEA create variable correctAnswer = "BBBB"
@@ -81,6 +86,8 @@ public class Business
 
         static string checkUserGuess(string correctGameNumber, string guessedNumber)
         {
+            // IDEA: is there a way to make this method more readable?
+            ///TODO : make this method more readable
             int cows = 0, bulls = 0;
             guessedNumber += "    ";     // if player entered less than 4 chars
             for (int i = 0; i < 4; i++)
@@ -106,6 +113,7 @@ public class Business
 
         static void showTopList()
         {
+
             StreamReader input = new StreamReader("result.txt");
             List<PlayerData> results = new List<PlayerData>();
             string line;

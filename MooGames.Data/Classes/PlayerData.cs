@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace MooGames.Data.Classes
 {
-    internal class PlayerData : IPlayerData
+    public class PlayerData : IPlayerData
     {
         public string Name { get; private set; }
         public int NGames { get; private set; }
         
         int totalGuess;
+
+        public PlayerData(string name, int guesses)
+        {
+            Name = name;
+        }
 
         public void Update(int guesses)
         {

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MooGames.Data\MooGames.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MooGames.UI.Interface
+namespace MooGames.Business.Interfaces
 {
-    internal interface IUserInterface
+    public interface IUserInterface
     {
         void Write(string message);
 

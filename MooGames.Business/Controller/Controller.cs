@@ -1,14 +1,14 @@
-﻿using MooGames.UI.Interface;
-using MooGames.Business;
+﻿using MooGames.Business;
+using MooGames.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MooGames.UI.Controller
+namespace MooGames.Business.Controller
 {
-    class Controller
+    public class Controller
     {
         private readonly IUserInterface _userInterface;
 
@@ -17,14 +17,15 @@ namespace MooGames.UI.Controller
             _userInterface = userInterface;
         }
 
+
         public void RunGame()
         {
-            var gameRunner = new Business.Business();
+            var gameRunner = new Business();
 
             gameRunner.RunGame();
 
         }
-        
+
 
     }
 }

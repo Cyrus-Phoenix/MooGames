@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using MooGames.Business;
-using MooGames.UI.Interface;
-using MooGames.UI.Controller;
-using MooGames.UI.Classes;
+using MooGames.Business.Controller;
+using MooGames.Business.Interfaces;
+using MooGames.Business.Classes.Common;
 
 namespace MooGame.UI;
 
@@ -12,8 +11,11 @@ class MainClass
 {
     public static void Main(string[] args)
     {
-        IUserInterface userInterface = new ConsoleUserInterface();
+
+        IUserInterface userInterface = new ConsoleUserinterface();
         Controller controller = new Controller(userInterface);
+
+        userInterface.Write("Welcome to MooGames!\n");
         controller.RunGame();
     }
 

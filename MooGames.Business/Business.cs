@@ -1,4 +1,5 @@
-﻿using MooGames.Data.Classes;
+﻿using MooGames.Business.Classes.Game;
+using MooGames.Data.Classes;
 
 namespace MooGames.Business;
 
@@ -6,6 +7,7 @@ namespace MooGames.Business;
 public class Business
 {
 
+    /// TODO: Bug: The first number of guesses is not counted.
     public void RunGame()
         ///TODO:Test all parts of the game
     {
@@ -15,12 +17,16 @@ public class Business
         Console.WriteLine("Enter your user name:\n");
         string name = Console.ReadLine();
 
+        // *** extracted method "RandomGameNumber" to its own class called "GameNumberGenerator"
+        // *** changed variable name from "makeRandomGameNumber" to "generateGameNumber"
+        var generateGameNumber = new GameNumberGenerator();
+
+
         while (gameIsActive)
         {
             // generate random number for the player to guess
-            // *** changed method name from "makeGoal" to "makeRandomGameNumber"
             // *** also changed variable name from "goal" to "correctGameNumber"
-            string correctGameNumber = makeRandomGameNumber();
+            string correctGameNumber = generateGameNumber.RandomGameNumber();
 
             Console.WriteLine("New game:\n");
             // comment out or remove next line to play real games!
@@ -58,7 +64,8 @@ public class Business
             output.WriteLine(name + "#&#" + numberOfGuesses);
             output.Close();
             showTopList();
-            Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\n Continue?");
+            ///TODO: Change the message to be more user friendly
+            Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
             string answer = Console.ReadLine();
             if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
             {
@@ -66,24 +73,8 @@ public class Business
             }
         }
 
-        static string makeRandomGameNumber()
-        {
-            Random randomGenerator = new Random();
-            string correctGameNumber = "";
-            for (int i = 0; i < 4; i++)
-            {
-                int random = randomGenerator.Next(10);
-                string randomDigit = "" + random;
-                while (correctGameNumber.Contains(randomDigit))
-                {
-                    random = randomGenerator.Next(10);
-                    randomDigit = "" + random;
-                }
-                correctGameNumber = correctGameNumber + randomDigit;
-            }
-            return correctGameNumber;
-        }
-
+      
+        ///TODO: Bryta ut metoden till egen klass
         static string checkUserGuess(string correctGameNumber, string guessedNumber)
         {
             // IDEA: is there a way to make this method more readable?
@@ -110,7 +101,7 @@ public class Business
             return "BBBB".Substring(0, bulls) + "," + "CCCC".Substring(0, cows);
         }
 
-
+        ///TODO: Bryta ut metoden till egen klass
         static void showTopList()
         {
 

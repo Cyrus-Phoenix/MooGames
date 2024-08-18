@@ -1,4 +1,5 @@
 ﻿using MooGames.Business.Classes.Game;
+using MooGames.Business.Interfaces;
 using MooGames.Data.Classes;
 
 namespace MooGames.Business;
@@ -6,6 +7,16 @@ namespace MooGames.Business;
 
 public class Business
 {
+    private readonly IUserInterface _userInterface;
+
+    public Business(IUserInterface userInterface)
+    {
+        if(userInterface == null)
+        {
+            throw new ArgumentNullException(nameof(userInterface));
+        }
+          _userInterface = userInterface;
+    }
 
     /// TODO: Bug: The first number of guesses is not counted.
     public void RunGame()
@@ -14,8 +25,8 @@ public class Business
         // taking input: user name, declaring game loop
         // *** changed gameloop to "gameIsActive"
         bool gameIsActive = true;
-        Console.WriteLine("Enter your user name:\n");
-        string name = Console.ReadLine();
+        _userInterface.Write("Enter your user name:\n");
+        string name = _userInterface.Read();
 
         // *** extracted method "RandomGameNumber" to its own class called "GameNumberGenerator"
         // *** changed variable name from "makeRandomGameNumber" to "generateGameNumber"
@@ -28,13 +39,13 @@ public class Business
             // *** also changed variable name from "goal" to "correctGameNumber"
             string correctGameNumber = generateGameNumber.RandomGameNumber();
 
-            Console.WriteLine("New game:\n");
+            _userInterface.Write("New game:\n");
             // comment out or remove next line to play real games!
-            Console.WriteLine("For practice, number is: " + correctGameNumber + "\n");
+            _userInterface.Write("For practice, number is: " + correctGameNumber + "\n");
             
             // input from user: a guessed number
             // *** changed variable name from "guess" to "guessedNumber"
-            string guessedNumber = Console.ReadLine();
+            string guessedNumber = _userInterface.Read();
             // *** changed variable name from "nGuess" to "numberOfGuesses"
             int numberOfGuesses = 1;
 
@@ -44,7 +55,7 @@ public class Business
             string userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
             
             // Write the result. IDEA: put this in the checkUserGuess method?
-            Console.WriteLine(userGuessResault + "\n");
+            _userInterface.Write(userGuessResault + "\n");
 
             // Keep on asking for guesses until the users answer is correct
             // IDEA: make method that takes user guess and give resault
@@ -53,7 +64,7 @@ public class Business
             {
                 //IDEA create variable correctAnswer = "BBBB"
                 numberOfGuesses++;
-                guessedNumber = Console.ReadLine();
+                guessedNumber = _userInterface.Read();
                 Console.WriteLine(guessedNumber + "\n");
                 userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
                 Console.WriteLine(userGuessResault + "\n");
@@ -65,8 +76,8 @@ public class Business
             output.Close();
             showTopList();
             ///TODO: Change the message to be more user friendly
-            Console.WriteLine("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
-            string answer = Console.ReadLine();
+            _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
+            string answer = _userInterface.Read();
             if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
             {
                 gameIsActive = false;
@@ -102,9 +113,9 @@ public class Business
         }
 
         ///TODO: Bryta ut metoden till egen klass
-        static void showTopList()
+            void showTopList()
         {
-
+            
             StreamReader input = new StreamReader("result.txt");
             List<PlayerData> results = new List<PlayerData>();
             string line;
@@ -127,7 +138,7 @@ public class Business
 
             }
             results.Sort((p1, p2) => p1.Average().CompareTo(p2.Average()));
-            Console.WriteLine("Player   games average");
+            _userInterface.Write("Player   games average");
             foreach (PlayerData p in results)
             {
                 Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.Average()));

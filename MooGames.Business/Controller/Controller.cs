@@ -20,7 +20,7 @@ namespace MooGames.Business.Controller
 
         public void RunGame()
         {
-            var gameRunner = new Business();
+            var gameRunner = new Business(_userInterface);
 
             gameRunner.RunGame();
 

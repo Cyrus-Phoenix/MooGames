@@ -15,7 +15,7 @@ class MainClass
         IUserInterface userInterface = new ConsoleUserinterface();
         Controller controller = new Controller(userInterface);
 
-        userInterface.Write("Welcome to MooGames!\n");
+        userInterface.Write(Messages.WelcomeMessage);
         controller.RunGame();
     }
 

@@ -11,7 +11,6 @@ class MainClass
 {
     public static void Main(string[] args)
     {
-
         IUserInterface userInterface = new ConsoleUserinterface();
         Controller controller = new Controller(userInterface);
 

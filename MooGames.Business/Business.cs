@@ -1,4 +1,5 @@
-﻿using MooGames.Business.Classes.Game;
+﻿using MooGames.Business.Classes.Common;
+using MooGames.Business.Classes.Game;
 using MooGames.Business.Interfaces;
 using MooGames.Data.Classes;
 
@@ -11,21 +12,21 @@ public class Business
 
     public Business(IUserInterface userInterface)
     {
-        if(userInterface == null)
+        if (userInterface == null)
         {
             throw new ArgumentNullException(nameof(userInterface));
         }
-          _userInterface = userInterface;
+        _userInterface = userInterface;
     }
 
     /// TODO: Bug: The first number of guesses is not counted.
     public void RunGame()
-        ///TODO:Test all parts of the game
+    ///TODO:Test all parts of the game
     {
         // taking input: user name, declaring game loop
         // *** changed gameloop to "gameIsActive"
         bool gameIsActive = true;
-        _userInterface.Write("Enter your user name:\n");
+        _userInterface.Write(Messages.EnterUserNameMessage);
         string name = _userInterface.Read();
 
         // *** extracted method "RandomGameNumber" to its own class called "GameNumberGenerator"
@@ -39,21 +40,26 @@ public class Business
             // *** also changed variable name from "goal" to "correctGameNumber"
             string correctGameNumber = generateGameNumber.RandomGameNumber();
 
-            _userInterface.Write("New game:\n");
+            _userInterface.Write(Messages.NewGameMessage);
             // comment out or remove next line to play real games!
             _userInterface.Write("For practice, number is: " + correctGameNumber + "\n");
-            
+
+            _userInterface.Write(Messages.EnterGuessMessage);
+
+
+
             // input from user: a guessed number
             // *** changed variable name from "guess" to "guessedNumber"
             string guessedNumber = _userInterface.Read();
+
             // *** changed variable name from "nGuess" to "numberOfGuesses"
             int numberOfGuesses = 1;
 
             //calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
             // *** changed the method's name from "checkBC" to "checkUserGuess"
             ///*** changed variable name from "bbcc" to "userGuessResault"
-            string userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
-            
+            string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+
             // Write the result. IDEA: put this in the checkUserGuess method?
             _userInterface.Write(userGuessResault + "\n");
 
@@ -66,15 +72,18 @@ public class Business
                 numberOfGuesses++;
                 guessedNumber = _userInterface.Read();
                 Console.WriteLine(guessedNumber + "\n");
-                userGuessResault = checkUserGuess(correctGameNumber, guessedNumber);
+                userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
                 Console.WriteLine(userGuessResault + "\n");
             }
 
-            
+
             StreamWriter output = new StreamWriter("result.txt", append: true);
             output.WriteLine(name + "#&#" + numberOfGuesses);
             output.Close();
+
+
             showTopList();
+
             ///TODO: Change the message to be more user friendly
             _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
             string answer = _userInterface.Read();
@@ -84,38 +93,60 @@ public class Business
             }
         }
 
-      
-        ///TODO: Bryta ut metoden till egen klass
-        static string checkUserGuess(string correctGameNumber, string guessedNumber)
-        {
-            // IDEA: is there a way to make this method more readable?
-            ///TODO : make this method more readable
-            int cows = 0, bulls = 0;
-            guessedNumber += "    ";     // if player entered less than 4 chars
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    if (correctGameNumber[i] == guessedNumber[j])
-                    {
-                        if (i == j)
-                        {
-                            bulls++;
-                        }
-                        else
-                        {
-                            cows++;
-                        }
-                    }
-                }
-            }
-            return "BBBB".Substring(0, bulls) + "," + "CCCC".Substring(0, cows);
-        }
 
         ///TODO: Bryta ut metoden till egen klass
-            void showTopList()
+        #region Linq version av den nestlade loopen under
+
+        static string CheckUserGuess(string correctGameNumber, string userGuess)
         {
-            
+            // Ensure userGuess has at least 4 characters
+            userGuess = userGuess.PadRight(4);
+
+            // Use Zip to iterate over the correctGameNumber and userGuess in parallel
+            var matches = correctGameNumber.Zip(userGuess, (correctChar, guessChar) => new { correctChar, guessChar });
+
+            // Count the bulls and cows
+            int bullCount = matches.Count(match => match.correctChar == match.guessChar);
+            int cowCount = matches.Count(match => match.correctChar != match.guessChar && correctGameNumber.Contains(match.guessChar));
+
+            // Build the result string
+            string result = new string('B', bullCount) + "," + new string('C', cowCount);
+
+            return result;
+        }
+
+        #endregion
+
+        //static string CheckUserGuess(string correctgamenumber, string guessednumber)
+        //{
+        //    // idea: is there a way to make this method more readable?
+        //    ///todo : make this method more readable
+        //    int cows = 0, bulls = 0;
+        //    guessednumber += "    ";     // if player entered less than 4 chars
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        for (int j = 0; j < 4; j++)
+        //        {
+        //            if (correctgamenumber[i] == guessednumber[j])
+        //            {
+        //                if (i == j)
+        //                {
+        //                    bulls++;
+        //                }
+        //                else
+        //                {
+        //                    cows++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return "bbbb".Substring(0, bulls) + "," + "cccc".Substring(0, cows);
+        //}
+
+        ///TODO: Bryta ut metoden till egen klass
+        void showTopList()
+        {
+
             StreamReader input = new StreamReader("result.txt");
             List<PlayerData> results = new List<PlayerData>();
             string line;

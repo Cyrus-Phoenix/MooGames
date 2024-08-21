@@ -12,10 +12,10 @@ class MainClass
     public static void Main(string[] args)
     {
         IUserInterface userInterface = new ConsoleUserinterface();
-        Controller controller = new Controller(userInterface);
+        MenuController menuController = new MenuController(userInterface);
 
         userInterface.Write(Messages.WelcomeMessage);
-        controller.RunGame();
+        menuController.RunMenu();
     }
 
     #region Utkommenterade baskoden

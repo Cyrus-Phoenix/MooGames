@@ -6,11 +6,11 @@ using MooGames.Data.Classes;
 namespace MooGames.Business;
 
 
-public class Business
+public class MooGame
 {
     private readonly IUserInterface _userInterface;
 
-    public Business(IUserInterface userInterface)
+    public MooGame(IUserInterface userInterface)
     {
         if (userInterface == null)
         {
@@ -20,7 +20,7 @@ public class Business
     }
 
     /// TODO: Bug: The first number of guesses is not counted.
-    public void RunGame()
+    public void RunMooGame()
     ///TODO:Test all parts of the game
     {
         // taking input: user name, declaring game loop
@@ -144,7 +144,8 @@ public class Business
         //}
 
         ///TODO: Bryta ut metoden till egen klass
-        void showTopList()
+    }
+        public void showTopList()
         {
 
             StreamReader input = new StreamReader("result.txt");
@@ -176,5 +177,4 @@ public class Business
             }
             input.Close();
         }
-    }
 }

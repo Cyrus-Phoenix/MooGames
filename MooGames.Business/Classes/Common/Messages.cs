@@ -34,5 +34,11 @@ namespace MooGames.Business.Classes.Common
         public static string EnterGuessMessage { get; } = "Please enter your guess:\n";
         public static string NewGameMessage { get; } = "New game started!\n";
 
+        public static string Menu { get; } = $@"
+                                                Meny 
+                                                1 = MooGames
+                                                5 = Topplista
+                                                Anykey = avsluta";
+
     }
 }

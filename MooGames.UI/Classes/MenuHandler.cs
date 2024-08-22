@@ -23,6 +23,7 @@ public class MenuHandler
     public void RunMenuAction(string userInput)
     {
         var mooGame = new Game(_userInterface);
+        userInput = userInput.ToUpper();
 
         if (userInput == Messages.MenuChoice1)
         {

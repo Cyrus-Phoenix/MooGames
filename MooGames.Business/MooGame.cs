@@ -51,9 +51,10 @@ public class MooGame
             // input from user: a guessed number
             // *** changed variable name from "guess" to "guessedNumber"
             string guessedNumber = _userInterface.Read();
-
+            
             // *** changed variable name from "nGuess" to "numberOfGuesses"
             int numberOfGuesses = 1;
+
 
             //calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
             // *** changed the method's name from "checkBC" to "checkUserGuess"
@@ -63,24 +64,27 @@ public class MooGame
             // Write the result. IDEA: put this in the checkUserGuess method?
             _userInterface.Write(userGuessResault + "\n");
 
-            // Keep on asking for guesses until the users answer is correct
-            // IDEA: make method that takes user guess and give resault
-            ///TODO: make method that takes user guess and give resault
-            while (userGuessResault != "BBBB,")
-            {
-                //IDEA create variable correctAnswer = "BBBB"
-                numberOfGuesses++;
-                guessedNumber = _userInterface.Read();
-                Console.WriteLine(guessedNumber + "\n");
-                userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
-                Console.WriteLine(userGuessResault + "\n");
+            // quit if the user chooses to cancel, else - keep on asking for guesses 
+            if (guessedNumber.ToUpper() == "Q")
+                gameIsActive = false;
+            else { 
+                while (userGuessResault != "BBBB,")
+                {
+                    //IDEA create variable correctAnswer = "BBBB"
+                    numberOfGuesses++;
+                    guessedNumber = _userInterface.Read();
+                    Console.WriteLine(guessedNumber + "\n");
+                    userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+                    Console.WriteLine(userGuessResault + "\n");
+                }
             }
+            
 
 
             StreamWriter output = new StreamWriter("result.txt", append: true);
             output.WriteLine(name + "#&#" + numberOfGuesses);
             output.Close();
-
+            
 
             showTopList();
 

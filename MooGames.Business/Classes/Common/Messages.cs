@@ -31,7 +31,7 @@ namespace MooGames.Business.Classes.Common
 
         public static string InvalidGuessMessage { get; } = "Invalid guess. Please enter a 4-digit number with no repeating digits.";
         public static string EnterUserNameMessage { get; } = "Please enter your name:\n";
-        public static string EnterGuessMessage { get; } = "Please enter your guess:\n";
+        public static string EnterGuessMessage { get; } = "Please enter your guess: (Q = quit)\n";
         public static string NewGameMessage { get; } = "New game started!\n";
 
         public static string Menu { get; } = $@"

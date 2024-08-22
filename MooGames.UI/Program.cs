@@ -12,7 +12,7 @@ class MainClass
     public static void Main(string[] args)
     {
         IUserInterface userInterface = new ConsoleUserinterface();
-        MenuController menuController = new MenuController(userInterface);
+        MooGameMenuController menuController = new MooGameMenuController(userInterface);
 
         userInterface.Write(Messages.WelcomeMessage);
         menuController.RunMenu();

@@ -20,8 +20,10 @@ public class MooGame
     }
 
     /// TODO: Bug: The first number of guesses is not counted.
+    /// TODO: Show more game rules to the player more than "guessing the number". Player need to know what BBBB and CCCC means.
     public void RunMooGame()
-    ///TODO:Test all parts of the game
+    
+        ///TODO:Test all parts of the game
     {
         // taking input: user name, declaring game loop
         // *** changed gameloop to "gameIsActive"
@@ -42,8 +44,7 @@ public class MooGame
 
             _userInterface.Write(Messages.NewGameMessage);
             // comment out or remove next line to play real games!
-            _userInterface.Write("For practice, number is: " + correctGameNumber + "\n");
-
+            _userInterface.Write("For practice, secret number is: " + correctGameNumber + "\n");
             _userInterface.Write(Messages.EnterGuessMessage);
 
 
@@ -64,6 +65,7 @@ public class MooGame
             // Write the result. IDEA: put this in the checkUserGuess method?
             _userInterface.Write(userGuessResault + "\n");
 
+            ///TODO: BUG: Player cannot quit in middle of the game
             // quit if the user chooses to cancel, else - keep on asking for guesses 
             if (guessedNumber.ToUpper() == "Q")
                 gameIsActive = false;
@@ -77,24 +79,26 @@ public class MooGame
                     userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
                     Console.WriteLine(userGuessResault + "\n");
                 }
+                
+                StreamWriter output = new StreamWriter("result.txt", append: true);
+                output.WriteLine(name + "#&#" + numberOfGuesses);
+                output.Close();
+
+                showTopList();
+
+                _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
+                string answer = _userInterface.Read();
+                if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+                {
+                    gameIsActive = false;
+                }
             }
             
 
 
-            StreamWriter output = new StreamWriter("result.txt", append: true);
-            output.WriteLine(name + "#&#" + numberOfGuesses);
-            output.Close();
-            
 
-            showTopList();
 
-            ///TODO: Change the message to be more user friendly
-            _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
-            string answer = _userInterface.Read();
-            if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
-            {
-                gameIsActive = false;
-            }
+           
         }
 
 

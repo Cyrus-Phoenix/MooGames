@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MooGames.Business.Classes.Game
+namespace MooGame.Classes
 {
     internal class GameNumberGenerator
     {

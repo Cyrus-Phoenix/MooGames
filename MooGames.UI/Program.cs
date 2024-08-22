@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using MooGames.Business.Controller;
-using MooGames.Business.Interfaces;
-using MooGames.Business.Classes.Common;
+using MooGames.MooGame.Controller;
+using MooGames.MooGame.Interfaces;
+using MooGames.MooGame.Classes.Common;
 
 namespace MooGame.UI;
 

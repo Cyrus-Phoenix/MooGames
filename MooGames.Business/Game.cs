@@ -1,16 +1,19 @@
-﻿using MooGames.Business.Classes.Common;
-using MooGames.Business.Classes.Game;
-using MooGames.Business.Interfaces;
+﻿using MooGames.MooGame.Classes.Common;
+using MooGame.Classes;
+using MooGames.MooGame.Interfaces;
 using MooGames.Data.Classes;
 
-namespace MooGames.Business;
+namespace MooGames.MooGame;
 
 
-public class MooGame
+/// Blev tvungen ändra MooGame till Game för att kunna använda den i MenuHandler eftersom projektet och classen hette MooGame
+/// TODO: IDEA: Ändra kanske alla projekt namn från MooGame till Games och bytta denna class namnet till MooGame återigen.
+
+public class Game
 {
     private readonly IUserInterface _userInterface;
 
-    public MooGame(IUserInterface userInterface)
+    public Game(IUserInterface userInterface)
     {
         if (userInterface == null)
         {
@@ -20,15 +23,15 @@ public class MooGame
     }
 
     /// TODO: Bug: The first number of guesses is not counted.
-    /// TODO: Show more game rules to the player more than "guessing the number". Player need to know what BBBB and CCCC means.
+    /// TODO: IDEA: Show more game rules to the player more than "guessing the number". Player need to know what BBBB and CCCC means.
     public void RunMooGame()
-    
-        ///TODO:Test all parts of the game
+
+    ///TODO: IDEA: Test all parts of the game
     {
         // taking input: user name, declaring game loop
         // *** changed gameloop to "gameIsActive"
         bool gameIsActive = true;
-        _userInterface.Write(Messages.EnterUserNameMessage);
+        _userInterface.Write(Messages.EnterNameMessage);
         string name = _userInterface.Read();
 
         // *** extracted method "RandomGameNumber" to its own class called "GameNumberGenerator"
@@ -84,7 +87,7 @@ public class MooGame
                 output.WriteLine(name + "#&#" + numberOfGuesses);
                 output.Close();
 
-                showTopList();
+                ShowTopList();
 
                 _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
                 string answer = _userInterface.Read();
@@ -102,7 +105,7 @@ public class MooGame
         }
 
 
-        ///TODO: Bryta ut metoden till egen klass
+        ///TODO: IDEA: Bryta ut metoden till egen klass
         #region Linq version av den nestlade loopen under
 
         static string CheckUserGuess(string correctGameNumber, string userGuess)
@@ -128,7 +131,7 @@ public class MooGame
         //static string CheckUserGuess(string correctgamenumber, string guessednumber)
         //{
         //    // idea: is there a way to make this method more readable?
-        //    ///todo : make this method more readable
+        //    ///TODO: IDEA: make this method more readable
         //    int cows = 0, bulls = 0;
         //    guessednumber += "    ";     // if player entered less than 4 chars
         //    for (int i = 0; i < 4; i++)
@@ -151,9 +154,11 @@ public class MooGame
         //    return "bbbb".Substring(0, bulls) + "," + "cccc".Substring(0, cows);
         //}
 
-        ///TODO: Bryta ut metoden till egen klass
+       
     }
-        public void showTopList()
+
+    ///TODO: IDEA: Bryta ut metoden till egen klass
+    public void ShowTopList()
         {
 
             StreamReader input = new StreamReader("result.txt");

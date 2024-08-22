@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MooGames.Business.Interfaces
+namespace MooGames.MooGame.Interfaces
 {
     public interface IUserInterface
     {

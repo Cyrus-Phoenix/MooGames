@@ -41,12 +41,17 @@ namespace MooGames.MooGame.Classes.Common
         public static string Menu { get; } = $@"
                                                 Meny 
                                                 1 = MooGames
-                                                5 = Topplista
+                                                2 = Not Available Yet
+                                                3 = MooGames Highscore
                                                 Q = Quit";
         public static string MenuChoiceMessage { get; } = "\n Please enter your choice: ";
         public static string MenuChoice1 { get; } = "1";
+        public static string MenuChoice2 { get; } = "2";
+        public static string MenuChoice3 { get; } = "3";
+        public static string MenuChoice4 { get; } = "4";
         public static string MenuChoice5 { get; } = "5";
         public static string QuitApplication { get; } = "Q";
+        public static string GameNotReleaseYet { get; } = "Game is not released yet, pick something else!";
         public static string InvalidChoiceMessage { get; } = "Invalid choice. Please enter a valid choice.";
         public static string ThankYouForPlayingMessage { get; } = "Thank you for playing!";
         

@@ -27,8 +27,11 @@ public class MenuHandler
         if (userInput == Messages.MenuChoice1)
         {
             mooGame.RunMooGame();
+        }else if (userInput == Messages.MenuChoice2)
+        {
+            _userInterface.Write(Messages.GameNotReleaseYet);
         }
-        else if (userInput == Messages.MenuChoice5)
+        else if (userInput == Messages.MenuChoice3)
         {
             mooGame.ShowTopList();
         }

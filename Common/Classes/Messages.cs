@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MooGames.MooGame.Classes.Common
+namespace MooGames.Menu.Classes.Common
 {
     public class Messages
     {

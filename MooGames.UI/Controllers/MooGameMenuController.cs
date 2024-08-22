@@ -1,11 +1,11 @@
 ﻿using MooGame.Interfaces;
-using MooGames.MooGame;
-using MooGames.MooGame.Classes.Common;
-using MooGames.MooGame.Interfaces;
+using MooGames.Menu;
+using MooGames.Menu.Classes.Common;
+using MooGames.Menu.Interfaces;
 using MooGames.Menu.Classes;
 
 
-namespace MooGames.MooGame.Controller
+namespace MooGames.Menu.Controller
 {
     public class MooGameMenuController : IMenuController
     {

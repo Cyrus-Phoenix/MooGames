@@ -1,6 +1,6 @@
-﻿using MooGames.MooGame.Classes.Common;
-using MooGames.MooGame.Interfaces;
-using MooGames.MooGame;
+﻿using MooGames.Menu.Classes.Common;
+using MooGames.Menu.Interfaces;
+using MooGames.Menu;
 
 namespace MooGames.Menu.Classes;
 

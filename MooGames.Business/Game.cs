@@ -1,9 +1,9 @@
-﻿using MooGames.MooGame.Classes.Common;
+﻿using MooGames.Menu.Classes.Common;
 using MooGame.Classes;
-using MooGames.MooGame.Interfaces;
+using MooGames.Menu.Interfaces;
 using MooGames.Data.Classes;
 
-namespace MooGames.MooGame;
+namespace MooGames.Menu;
 
 
 /// Blev tvungen ändra MooGame till Game för att kunna använda den i MenuHandler eftersom projektet och classen hette MooGame

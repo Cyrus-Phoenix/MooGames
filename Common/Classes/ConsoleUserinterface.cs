@@ -1,10 +1,10 @@
-﻿using MooGames.MooGame.Interfaces;
+﻿using MooGames.Menu.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MooGames.MooGame.Classes.Common
+namespace MooGames.Menu.Classes.Common
 {
     public class ConsoleUserinterface : IUserInterface
     {

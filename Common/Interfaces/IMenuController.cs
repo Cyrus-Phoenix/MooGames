@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MooGame.Interfaces;
 
-internal interface IMenuController
+public interface IMenuController
 {
     public void RunMenu();
 }

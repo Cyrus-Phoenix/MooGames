@@ -15,4 +15,9 @@
     <None Remove="Interfaces\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="Interfaces\IMenuController.cs" />
+    <Compile Include="Interfaces\IUserInterface.cs" />
+  </ItemGroup>
+
 </Project>

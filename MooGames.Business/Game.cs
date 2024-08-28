@@ -5,7 +5,6 @@ using MooGames.Data.Classes;
 
 namespace MooGames.Menu;
 
-
 /// Blev tvungen ändra MooGame till Game för att kunna använda den i MenuHandler eftersom projektet och classen hette MooGame
 /// TODO: IDEA: Ändra kanske alla projekt namn från MooGame till Games och bytta denna class namnet till MooGame återigen.
 
@@ -25,24 +24,21 @@ public class Game
     /// TODO: Bug: The first number of guesses is not counted.
     /// TODO: IDEA: Show more game rules to the player more than "guessing the number". Player need to know what BBBB and CCCC means.
     public void RunMooGame()
-
     ///TODO: IDEA: Test all parts of the game
     {
-        // taking input: user name, declaring game loop
-        // *** changed gameloop to "gameIsActive"
+        // declaring game loop
         bool gameIsActive = true;
+        
+        // taking input: user name,
         _userInterface.Write(Messages.EnterNameMessage);
         string name = _userInterface.Read();
 
         // *** extracted method "RandomGameNumber" to its own class called "GameNumberGenerator"
-        // *** changed variable name from "makeRandomGameNumber" to "generateGameNumber"
         var generateGameNumber = new GameNumberGenerator();
-
 
         while (gameIsActive)
         {
             // generate random number for the player to guess
-            // *** also changed variable name from "goal" to "correctGameNumber"
             string correctGameNumber = generateGameNumber.RandomGameNumber();
 
             _userInterface.Write(Messages.NewGameMessage);
@@ -50,26 +46,19 @@ public class Game
             _userInterface.Write("For practice, secret number is: " + correctGameNumber + "\n");
             _userInterface.Write(Messages.EnterGuessMessage);
 
-
-
-            // input from user: a guessed number
-            // *** changed variable name from "guess" to "guessedNumber"
+            // take input from user (a guessed number)
             string guessedNumber = _userInterface.Read();
             
-            // *** changed variable name from "nGuess" to "numberOfGuesses"
             int numberOfGuesses = 1;
 
-
             //calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
-            // *** changed the method's name from "checkBC" to "checkUserGuess"
-            ///*** changed variable name from "bbcc" to "userGuessResault"
             string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
 
             // Write the result. IDEA: put this in the checkUserGuess method?
             _userInterface.Write(userGuessResault + "\n");
 
             ///TODO: BUG: Player cannot quit in middle of the game
-            // quit if the user chooses to cancel, else - keep on asking for guesses 
+            // quit if the user choose to cancel, else - keep on asking for guesses 
             if (guessedNumber.ToUpper() == "Q")
                 gameIsActive = false;
             else { 

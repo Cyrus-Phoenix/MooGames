@@ -16,12 +16,12 @@ namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
             //Arrange
             // Create a new mock object for the IUserInterface. 
             // This creates a "fake" user interface that we can control in our test.
-            var mockUsterInterface = new Mock<IUserInterface>();
+            var mockUserInterface = new Mock<IUserInterface>();
 
             // The .Object property on a Mock<T> gives you the actual object that has been mocked.
             // In this case, it gives you an object that implements IUserInterface.
             // This object doesn't do anything by default, but you can set up expectations and return values on it.
-            var menuHandler = new MenuHandler(mockUsterInterface.Object);
+            var menuHandler = new MenuHandler(mockUserInterface.Object);
 
             // This is just a string that represents an invalid choice in the menu.
             var invalidChoice = " ";
@@ -38,16 +38,15 @@ namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
             menuHandler.RunMenuAction(invalidChoice);
 
             //Assert
-            mockUsterInterface.Verify(ui => ui.Write(Messages.InvalidChoiceMessage), Times.Once, "Valid choice but expected Invalid choice");
+            mockUserInterface.Verify(ui => ui.Write(Messages.InvalidChoiceMessage), Times.Once, "Valid choice but expected Invalid choice");
 
         }
         #endregion
-
+            
         [TestMethod()]
         public void RunMenuRunMenu_QuitApplication_WritesThankYouMessage()
         {
             //Arrange
-            // 
             var mockUserInterface = new Mock<IUserInterface>();
             var menuHandler = new MenuHandler(mockUserInterface.Object);
             var quitApplication = "Q";

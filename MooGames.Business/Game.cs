@@ -28,7 +28,7 @@ public class Game
     {
         // declaring game loop
         bool gameIsActive = true;
-        
+
         // taking input: user name,
         _userInterface.Write(Messages.EnterNameMessage);
         string name = _userInterface.Read();
@@ -46,52 +46,92 @@ public class Game
             _userInterface.Write("For practice, secret number is: " + correctGameNumber + "\n");
             _userInterface.Write(Messages.EnterGuessMessage);
 
-            // take input from user (a guessed number)
-            string guessedNumber = _userInterface.Read();
-            
-            int numberOfGuesses = 1;
+            // ********************OLD CODE STARTS**********************
+            string guessedNumber = string.Empty;
+            int numberOfGuesses = 0;
+            string userGuessResault = string.Empty;
 
-            //calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
-            string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+            ////calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
+            //string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
 
-            // Write the result. IDEA: put this in the checkUserGuess method?
-            _userInterface.Write(userGuessResault + "\n");
+            //// Write the result of users guess
+            //_userInterface.Write(userGuessResault + "\n");
 
-            ///TODO: BUG: Player cannot quit in middle of the game
-            // quit if the user choose to cancel, else - keep on asking for guesses 
-            if (guessedNumber.ToUpper() == "Q")
-                gameIsActive = false;
-            else { 
-                while (userGuessResault != "BBBB,")
-                {
-                    //IDEA create variable correctAnswer = "BBBB"
-                    numberOfGuesses++;
-                    guessedNumber = _userInterface.Read();
-                    Console.WriteLine(guessedNumber + "\n");
-                    userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
-                    Console.WriteLine(userGuessResault + "\n");
-                }
-                
-                StreamWriter output = new StreamWriter("result.txt", append: true);
-                output.WriteLine(name + "#&#" + numberOfGuesses);
-                output.Close();
-
-                ShowTopList();
-
-                _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
-                string answer = _userInterface.Read();
-                if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+            while (userGuessResault != "BBBB,")
+            {
+                //IDEA create variable correctAnswer = "BBBB"
+                numberOfGuesses++;
+                guessedNumber = _userInterface.Read();
+                if (guessedNumber.ToUpper() == "Q")
                 {
                     gameIsActive = false;
+                    break;
                 }
+                Console.WriteLine(guessedNumber + "\n");
+                userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+                Console.WriteLine(userGuessResault + "\n");
             }
-            
 
+            StreamWriter output = new StreamWriter("result.txt", append: true);
+            output.WriteLine(name + "#&#" + numberOfGuesses);
+            output.Close();
 
+            ShowTopList();
 
-
-           
+            _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
+            string answer = _userInterface.Read();
+            if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+            {
+                gameIsActive = false;
+            }
         }
+    }        
+        //// ********************OLD CODE ENDS**********************    
+            //// ********************OLD CODE STARTS**********************
+            //// take input from user (a guessed number)
+            //string guessedNumber = _userInterface.Read();
+
+            //int numberOfGuesses = 1;
+
+            ////calling method wich compares guesses number with correct answer. returns B's and C's (or nothing)
+            //string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+
+            //// Write the result. IDEA: put this in the checkUserGuess method?
+            //_userInterface.Write(userGuessResault + "\n");
+
+            /////TODO: BUG: Player cannot quit in middle of the game
+            //// quit if the user choose to cancel, else - keep on asking for guesses 
+            //if (guessedNumber.ToUpper() == "Q")
+            //    gameIsActive = false;
+            //else
+            //{
+            //    while (userGuessResault != "BBBB,")
+            //    {
+            //        //IDEA create variable correctAnswer = "BBBB"
+            //        numberOfGuesses++;
+            //        guessedNumber = _userInterface.Read();
+            //        Console.WriteLine(guessedNumber + "\n");
+            //        userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
+            //        Console.WriteLine(userGuessResault + "\n");
+            //    }
+
+            //    StreamWriter output = new StreamWriter("result.txt", append: true);
+            //    output.WriteLine(name + "#&#" + numberOfGuesses);
+            //    output.Close();
+
+            //    ShowTopList();
+
+            //    _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
+            //    string answer = _userInterface.Read();
+            //    if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+            //    {
+            //        gameIsActive = false;
+            //    }
+            //}
+            //// ****************************************************
+
+
+     
 
 
         ///TODO: IDEA: Bryta ut metoden till egen klass
@@ -144,8 +184,6 @@ public class Game
         //}
 
        
-    }
-
     ///TODO: IDEA: Bryta ut metoden till egen klass
     public void ShowTopList()
         {
@@ -168,8 +206,6 @@ public class Game
                 {
                     results[pos].Update(guesses);
                 }
-
-
             }
             results.Sort((p1, p2) => p1.Average().CompareTo(p2.Average()));
             _userInterface.Write("Player   games average");

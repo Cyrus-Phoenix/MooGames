@@ -22,13 +22,14 @@ public class MenuHandler
 
     public void RunMenuAction(string userInput)
     {
-        var mooGame = new Game(_userInterface);
+        var mooGame = new MooGame(_userInterface);
         userInput = userInput.ToUpper();
 
         if (userInput == Messages.MenuChoice1)
         {
             mooGame.RunMooGame();
-        }else if (userInput == Messages.MenuChoice2)
+        }
+        else if (userInput == Messages.MenuChoice2)
         {
             _userInterface.Write(Messages.GameNotReleaseYet);
         }

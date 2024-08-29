@@ -8,11 +8,11 @@ namespace MooGames.Menu;
 /// Blev tvungen ändra MooGame till Game för att kunna använda den i MenuHandler eftersom projektet och classen hette MooGame
 /// TODO: IDEA: Ändra kanske alla projekt namn från MooGame till Games och bytta denna class namnet till MooGame återigen.
 
-public class Game
+public class MooGame
 {
     private readonly IUserInterface _userInterface;
 
-    public Game(IUserInterface userInterface)
+    public MooGame(IUserInterface userInterface)
     {
         if (userInterface == null)
         {
@@ -55,7 +55,7 @@ public class Game
             //string userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
 
             //// Write the result of users guess
-            //_userInterface.Write(userGuessResault + "\n");
+            //_userInterface.Write(userGuessResault + "\n");            
 
             while (userGuessResault != "BBBB,")
             {
@@ -78,12 +78,33 @@ public class Game
 
             ShowTopList();
 
-            _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Continue?\n n = no");
-            string answer = _userInterface.Read();
-            if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+            bool playerDecidedToPlayAgain = false;
+            while (!playerDecidedToPlayAgain)
             {
-                gameIsActive = false;
+            _userInterface.Write("Correct, it took " + numberOfGuesses + " guesses\n Play again? (y/n)");
+            string answer = _userInterface.Read();
+            if (answer.ToUpper() == "Y")
+                {
+                    playerDecidedToPlayAgain = true;
+                }
+            else if (answer.ToUpper() == "N")
+                {
+                    gameIsActive = false;
+                    break;
+                }
+            else
+                {
+                    _userInterface.Write("invalid input");
+                }
             }
+                
+                
+                //if (answer != null && answer != string.Empty && answer.Substring(0, 1).ToLower() == "n")
+                //{
+                //    gameIsActive = false;
+                //}
+            
+            
         }
     }        
         //// ********************OLD CODE ENDS**********************    

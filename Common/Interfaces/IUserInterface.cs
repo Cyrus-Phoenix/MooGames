@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MooGames.Menu.Interfaces;
 
-namespace MooGames.Menu.Interfaces
+public interface IUserInterface
 {
-    public interface IUserInterface
-    {
-        void Write(string message);
+    void Write(string message);
 
-        string Read();
-    }
+    string Read();
 }

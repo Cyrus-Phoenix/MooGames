@@ -1,6 +1,5 @@
 ﻿using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
-using MooGames.Menu;
 
 namespace MooGames.Menu.Classes;
 
@@ -41,7 +40,7 @@ public class MenuHandler
         {
             _userInterface.Write(Messages.ThankYouForPlayingMessage);
         }
-        else 
+        else
         {
             _userInterface.Write(Messages.InvalidChoiceMessage);
         }

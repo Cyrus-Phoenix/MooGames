@@ -1,15 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\MooGames.Common.csproj" />
-    <ProjectReference Include="..\MooGames.Business\MooGame.csproj" />
+    <Compile Remove="Data.cs" />
+    <Compile Remove="Interfaces\IHighscore.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Games.Common.csproj" />
   </ItemGroup>
 
 </Project>

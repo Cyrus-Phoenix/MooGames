@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\MooGames.Common.csproj" />
-    <ProjectReference Include="..\MooGames.Data\MooGames.Data.csproj" />
+    <ProjectReference Include="..\Common\Games.Common.csproj" />
+    <ProjectReference Include="..\MooGames.Data\Games.Data.csproj" />
   </ItemGroup>
 
 </Project>

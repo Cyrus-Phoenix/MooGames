@@ -8,7 +8,7 @@ namespace MooGame.Classes
 {
     internal class GameNumberGenerator
     {
-        public string RandomGameNumber()
+        public string GenerateGameNumber()
         {
             var randomGenerator = new Random();
 
@@ -17,21 +17,7 @@ namespace MooGame.Classes
                 .OrderBy(x => randomGenerator.Next())
                 .Take(4)
                 .Aggregate("", (current, number) => current + number.ToString());
-
-            //string correctGameNumber = "";
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    int random = randomGenerator.Next(10);
-            //    string randomDigit = "" + random;
-            //    while (correctGameNumber.Contains(randomDigit))
-            //    {
-            //        random = randomGenerator.Next(10);
-            //        randomDigit = "" + random;
-            //    }
-            //    correctGameNumber = correctGameNumber + randomDigit;
-            //}
-
+            
             return correctGameNumber;
         }
     }

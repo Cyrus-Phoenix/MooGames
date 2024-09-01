@@ -1,6 +1,7 @@
 ﻿using MooGames.Menu.Classes;
 using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
+using Games.Data.Interfaces;
 using Moq;
 
 namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
@@ -17,11 +18,13 @@ namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
             // Create a new mock object for the IUserInterface. 
             // This creates a "fake" user interface that we can control in our test.
             var mockUserInterface = new Mock<IUserInterface>();
+            var mockHighscoreHandler = new Mock<IHighscoreHandler>();
 
             // The .Object property on a Mock<T> gives you the actual object that has been mocked.
             // In this case, it gives you an object that implements IUserInterface.
             // This object doesn't do anything by default, but you can set up expectations and return values on it.
-            var menuHandler = new MenuHandler(mockUserInterface.Object);
+            var menuHandler = new MenuHandler(mockUserInterface.Object, mockHighscoreHandler.Object);
+
 
             // This is just a string that represents an invalid choice in the menu.
             var invalidChoice = " ";
@@ -48,7 +51,8 @@ namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
         {
             //Arrange
             var mockUserInterface = new Mock<IUserInterface>();
-            var menuHandler = new MenuHandler(mockUserInterface.Object);
+            var mockHighscoreHandler = new Mock<IHighscoreHandler>();
+            var menuHandler = new MenuHandler(mockUserInterface.Object, mockHighscoreHandler.Object);
             var quitApplication = "Q";
 
             //Act

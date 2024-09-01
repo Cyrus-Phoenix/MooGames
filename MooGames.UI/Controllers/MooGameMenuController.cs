@@ -3,6 +3,7 @@ using MooGames.Menu;
 using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
 using MooGames.Menu.Classes;
+using Games.Data.Interfaces;
 
 
 namespace MooGames.Menu.Controller
@@ -10,15 +11,17 @@ namespace MooGames.Menu.Controller
     public class MooGameMenuController : IMenuController
     {
         private readonly IUserInterface _userInterface;
+        private readonly IHighscoreHandler _highscoreHandler;
 
-        public MooGameMenuController(IUserInterface userInterface)
+        public MooGameMenuController(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
         {
             _userInterface = userInterface;
+            _highscoreHandler = highscoreHandler;
         }
 
         public void RunMenu()
         {
-            var menuHandler = new MenuHandler(_userInterface);
+            var menuHandler = new MenuHandler(_userInterface, _highscoreHandler);
             bool menuIsActive = true;
 
             while (menuIsActive)

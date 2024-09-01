@@ -1,4 +1,6 @@
-﻿using MooGames.Menu.Classes.Common;
+﻿using Games.Data.Interfaces;
+using MooGames.Data;
+using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Controller;
 using MooGames.Menu.Interfaces;
 
@@ -9,7 +11,8 @@ class MainClass
     public static void Main(string[] args)
     {
         IUserInterface userInterface = new ConsoleUserinterface();
-        MooGameMenuController menuController = new MooGameMenuController(userInterface);
+        IHighscoreHandler highscoreHandler = new HighScoreHandler();
+        MooGameMenuController menuController = new MooGameMenuController(userInterface, highscoreHandler);
 
         userInterface.Write(Messages.WelcomeMessage);
         menuController.RunMenu();

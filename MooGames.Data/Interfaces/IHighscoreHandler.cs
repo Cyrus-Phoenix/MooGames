@@ -2,6 +2,6 @@
 
 public interface IHighscoreHandler
 {
-    public StreamWriter UpdateHighscore(string path, string highscoreInput);
+    public void UpdateHighscore(string path, string highscoreInput);
     public StreamReader PrintHighscore(string path);
 }

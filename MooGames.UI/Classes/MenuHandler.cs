@@ -1,4 +1,5 @@
-﻿using MooGames.Menu.Classes.Common;
+﻿using Games.Data.Interfaces;
+using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
 
 namespace MooGames.Menu.Classes;
@@ -6,10 +7,11 @@ namespace MooGames.Menu.Classes;
 public class MenuHandler
 {
     private readonly IUserInterface _userInterface;
-
-    public MenuHandler(IUserInterface userInterface)
+    private readonly IHighscoreHandler _highscoreHandler;
+    public MenuHandler(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
     {
         _userInterface = userInterface;
+        _highscoreHandler = highscoreHandler;
     }
 
     public string GetUserChoice()
@@ -21,7 +23,7 @@ public class MenuHandler
 
     public void RunMenuAction(string userInput)
     {
-        var mooGame = new MooGame(_userInterface);
+        var mooGame = new MooGame(_userInterface, _highscoreHandler);
         userInput = userInput.ToUpper();
 
         if (userInput == Messages.MenuChoice1)

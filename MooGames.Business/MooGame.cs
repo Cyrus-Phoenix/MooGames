@@ -53,15 +53,9 @@ public class MooGame
             var highscoreEntry = name + "#&#" + numberOfGuesses;
 
             _highscoreHandler.UpdateHighscore(textFileName, highscoreEntry);
-            //_highscoreHandler.UpdateHighscore();
 
-            // StreamWriter output = new StreamWriter("result.txt", append: true);
-            //output.WriteLine(banan);
-            //output.Close();
+            ShowHighscore();
 
-            ShowTopList();
-
-            //gameIsActive = PlayAgainOption(gameIsActive, numberOfGuesses);
             gameIsActive = PlayAgainOption();
 
 
@@ -77,7 +71,7 @@ public class MooGame
 
 
 
-        while (userGuessResault != "BBBB,")
+        while (userGuessResault != "BBBB")
         {
             //IDEA create variable correctAnswer = "BBBB"
             numberOfGuesses++;
@@ -156,28 +150,21 @@ public class MooGame
         userGuess = userGuess.PadRight(4);
 
         // Use Zip to iterate over the correctGameNumber and userGuess in parallel
-        var matches = correctGameNumber.Zip(userGuess, (correctChar, guessChar) => new { correctChar, guessChar });
+        var characterPairs = correctGameNumber.Zip(userGuess, (correctCharacter, guessedCharacter) => new { correctCharacter, guessedCharacter });
 
-        // Count the bulls and cows
-        int bullCount = matches.Count(match => match.correctChar == match.guessChar);
-        int cowCount = matches.Count(match => match.correctChar != match.guessChar && correctGameNumber.Contains(match.guessChar));
+        int bullCount = characterPairs.Count(pair => pair.correctCharacter == pair.guessedCharacter);
+        int cowCount = characterPairs.Count(pair => pair.correctCharacter != pair.guessedCharacter && correctGameNumber.Contains(pair.guessedCharacter));
 
-        // Build the result string
-        //string result = new string('B', bullCount) + "," + new string('C', cowCount);
-        //return result;
-
-        //better version :
         return new string('B', bullCount) + new string('C', cowCount);
     }
 
 
 
     ///TODO: IDEA: Bryta ut metoden till egen klass
-    public void ShowTopList()
+    public void ShowHighscore()
     {
         using (StreamReader input = _highscoreHandler.PrintHighscore("result.txt"))
         { 
-        //StreamReader input = new StreamReader("result.txt");
             List<PlayerData> results = new List<PlayerData>();
             string line;
             while ((line = input.ReadLine()) != null)
@@ -200,7 +187,7 @@ public class MooGame
             _userInterface.Write("Player   games average");
             foreach (PlayerData player in results)
             {
-                _userInterface.Write(string.Format("{0,-9}{1,5:D}{2,9:F2}", player.Name, player.NGames, player.Average()));
+                _userInterface.Write(string.Format("{0,-9}{1,5:D}{2,9:F2}", player.Name, player.amountOfGamesPlayed, player.Average()));
             }
         }
         

@@ -3,29 +3,30 @@
 public class PlayerData
 {
     public string Name { get; private set; }
-    public int NGames { get; private set; }
+    public int amountOfGamesPlayed { get; private set; }
 
-    int totalGuess;
+    int totalGuesses = 0;
 
     public PlayerData(string name, int guesses)
     {
         Name = name;
+       
     }
 
     public void Update(int guesses)
     {
-        totalGuess += guesses;
-        NGames++;
+        totalGuesses += guesses;
+        amountOfGamesPlayed++;
     }
 
     public double Average()
     {
-        return (double)totalGuess / NGames;
+        return (double)totalGuesses / amountOfGamesPlayed;
     }
 
-    public override bool Equals(Object p)
+    public override bool Equals(Object player)
     {
-        return Name.Equals(((PlayerData)p).Name);
+        return Name.Equals(((PlayerData)player).Name);
     }
 
     public override int GetHashCode()

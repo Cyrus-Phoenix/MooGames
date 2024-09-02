@@ -36,7 +36,7 @@ public class MenuHandler
         }
         else if (userInput == Messages.MenuChoice3)
         {
-            mooGame.ShowTopList();
+            mooGame.ShowHighscore();
         }
         else if (userInput == Messages.QuitApplication)
         {

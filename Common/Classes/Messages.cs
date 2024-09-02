@@ -29,7 +29,7 @@ namespace MooGames.Menu.Classes.Common
 
         // ************ Game ************
         public static string NewGameMessage { get; } = "New game started!\n";
-        public static string EnterGuessMessage { get; } = "Please enter your guess:\n (Q = quit)\n";
+        public static string EnterGuessMessage { get; } = "Please enter your guess or enter letter 'Q' to quit and lose all progress made this round.";
         public static string InvalidGuessMessage { get; } = "Invalid guess. Please enter a 4-digit number with no repeating digits.";
         public static string EnterNameMessage { get; } = "Please enter your name:\n";
         public static string GameOverMessage { get; } = "Game Over!";

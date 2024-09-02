@@ -58,16 +58,9 @@ namespace MooGame.Classes
                 if (indexPosition < 0)
                 {
                     results.Add(playerData);
+                    //This is here for the game to add first playthrough to the highscore list
                     indexPosition = results.IndexOf(playerData);
-
-                    //if (playerQuitedGame)
-                    //{
-                    //    playerData.GameQuitted();
-                    //}
-                    //else
-                    //{
-                      playerData.UpdateTotalGuesses(guesses);
-                    //}
+                    playerData.UpdateTotalGuesses(guesses);
                 }
                 else
                 {

@@ -9,6 +9,7 @@ public class MenuHandler
 {
     private readonly IUserInterface _userInterface;
     private readonly IHighscoreHandler _highscoreHandler;
+
     public MenuHandler(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
     {
         _userInterface = userInterface;

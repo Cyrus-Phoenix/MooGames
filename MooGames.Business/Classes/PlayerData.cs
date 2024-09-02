@@ -21,12 +21,6 @@ public class PlayerData
 
     }
 
-    //public void GameQuitted()
-    //{
-    //    totalGuesses += 0;
-    //    amountOfGamesPlayed += 0;
-    //}
-
     public double Average()
     {
         return (double)totalGuesses / amountOfGamesPlayed;

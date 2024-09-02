@@ -1,9 +1,8 @@
-﻿using MooGame.Interfaces;
-using MooGames.Menu;
+﻿using Games.Data.Interfaces;
+using MooGame.Interfaces;
+using MooGames.Menu.Classes;
 using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
-using MooGames.Menu.Classes;
-using Games.Data.Interfaces;
 
 
 namespace MooGames.Menu.Controller

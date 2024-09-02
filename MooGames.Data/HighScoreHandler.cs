@@ -6,23 +6,18 @@ namespace MooGames.Data;
 public class HighScoreHandler: IHighscoreHandler
 {
 
-    /// <summary>
-    /// Updates the given highscore file with the given highscore input, creating the file if it does not exist.
-    /// </summary>
-    /// <param name="path">The file path where the highscore will be updated.</param>
-    /// <param name="highscoreInput">The highscore input to be written to the file.</param>
-    /// <returns>Returns the StreamWriter object used to write to the file.</returns>
-    public void UpdateHighscore(string path, string highscoreInput)
+   
+    public void InitializeHighscoreFile(string fileName, string splitIdentifier)
     {
        
-        using (StreamWriter streamWriter = new StreamWriter(path, append: true))
+        using (StreamWriter streamWriter = new StreamWriter(fileName, append: true))
         {
-            streamWriter.WriteLine(highscoreInput);
+            streamWriter.WriteLine(splitIdentifier);
         }
     }
-    public StreamReader PrintHighscore(string path)
+    public StreamReader ReadHighscoreFile(string fileName)
     {
-        return new StreamReader(path);
+        return new StreamReader(fileName);
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using Games.Data.Interfaces;
+using MooGame.Classes;
 using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
 
@@ -24,6 +25,8 @@ public class MenuHandler
     public void RunMenuAction(string userInput)
     {
         var mooGame = new MooGame(_userInterface, _highscoreHandler);
+        var highscore = new Highscore(_userInterface, _highscoreHandler);
+
         userInput = userInput.ToUpper();
 
         if (userInput == Messages.MenuChoice1)
@@ -36,7 +39,7 @@ public class MenuHandler
         }
         else if (userInput == Messages.MenuChoice3)
         {
-            mooGame.ShowHighscore();
+            highscore.ShowHighscore();
         }
         else if (userInput == Messages.QuitApplication)
         {

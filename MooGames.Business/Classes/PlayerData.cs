@@ -5,19 +5,27 @@ public class PlayerData
     public string Name { get; private set; }
     public int amountOfGamesPlayed { get; private set; }
 
+    bool playerQuitedGame = true;
+
     int totalGuesses = 0;
 
     public PlayerData(string name, int guesses)
     {
         Name = name;
-       
     }
 
-    public void Update(int guesses)
+    public void UpdateTotalGuesses(int guesses)
     {
         totalGuesses += guesses;
         amountOfGamesPlayed++;
+
     }
+
+    //public void GameQuitted()
+    //{
+    //    totalGuesses += 0;
+    //    amountOfGamesPlayed += 0;
+    //}
 
     public double Average()
     {

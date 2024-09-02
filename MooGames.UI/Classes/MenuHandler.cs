@@ -32,15 +32,21 @@ public class MenuHandler
 
         if (userInput == Messages.MenuChoice1)
         {
+            Console.Clear();
             mooGame.RunMooGame();
         }
         else if (userInput == Messages.MenuChoice2)
         {
-            _userInterface.Write(Messages.GameNotReleaseYet);
+            _userInterface.Write(Messages.GameRules);
+            
         }
         else if (userInput == Messages.MenuChoice3)
         {
             highscore.ShowHighscore();
+        }
+        else if (userInput == Messages.MenuChoice4)
+        {
+            _userInterface.Write(Messages.GameNotReleaseYet);
         }
         else if (userInput == Messages.QuitApplication)
         {

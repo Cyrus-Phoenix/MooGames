@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Games.Common", "Common\Game
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooGames.MenuMooGames.Menu_Tests", "MooGames.MenuMooGames.Menu_Tests\MooGames.MenuMooGames.Menu_Tests.csproj", "{BE77E360-1C61-4FE1-8512-0DEB1967AB6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooGameMooGame_Tests", "MooGameMooGame_Tests\MooGameMooGame_Tests.csproj", "{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BE77E360-1C61-4FE1-8512-0DEB1967AB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE77E360-1C61-4FE1-8512-0DEB1967AB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE77E360-1C61-4FE1-8512-0DEB1967AB6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,12 +25,11 @@ namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
             // This object doesn't do anything by default, but you can set up expectations and return values on it.
             var menuHandler = new MenuHandler(mockUserInterface.Object, mockHighscoreHandler.Object);
 
-
             // This is just a string that represents an invalid choice in the menu.
             var invalidChoice = " ";
             
             //Assert
-            var validChoices= new List<string> { "1", "2", "3", "Q" };
+            var validChoices = new List<string> { "1", "2", "3", "4", "Q" };
             if(validChoices.Contains(invalidChoice))
             {
                 Assert.Fail($"'{invalidChoice}' is a valid choice but expected an invalid choice");

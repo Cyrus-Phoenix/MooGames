@@ -1,13 +1,15 @@
-﻿using Games.Common.Interfaces;
+﻿using Games.Common.Classes;
+using Games.Common.Interfaces;
 
 namespace ArenaFighter
 {
     public class GameRunner : IGame
     {
+        IUserInterface userInterface = new ConsoleUserinterface();
         public void RunGame()
         {
-           Game game = new Game();
-            game.Start();
+           GameMenu gameMenu = new GameMenu(userInterface);
+            gameMenu.RunMenu();
         }
       
     }

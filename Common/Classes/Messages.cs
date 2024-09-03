@@ -87,6 +87,17 @@ public class Messages
                                                    'C' means that you have a correct digit in the wrong position.
                                                 4. If you want to quit the game, enter 'Q'.
                                                 5. Good luck!";
+    public static string ArenaFighterRules { get; } = @" 
+                                                Game Rules
+                                                1. You will be fighting against a computer-controlled opponent.
+                                                2. You will have to choose to attack or retire.
+                                                3. If you choose to attack, D6 dice will be rolled 
+                                                   and whoever with the highest damage will damage their opponent.
+                                                5. The game will continue until one of the fighters has 0 health.
+                                                   When one of the fighters has 0 health, the game will end and battle history will be displayed.
+                                                6. If you choose to retire, you will see the battle history.
+                                                7. If you continue to fight, you will continue with the same health.
+                                                8. Good luck!";
 
 
 
@@ -94,6 +105,7 @@ public class Messages
     public static string ArenaMenuOptions { get; } = $@"
                                                 Menu 
                                                 1 = Play
+                                                2 = Game Rules
                                                 Q = Quit";
 
     public static string MooGameMenuOptions { get; } = $@"

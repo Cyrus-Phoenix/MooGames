@@ -41,7 +41,7 @@ namespace ArenaFighter
 
         private void Retire()
         {
-            Console.WriteLine($"Career of {Player.Name}");
+            Console.WriteLine($"\nCareer of {Player.Name}");
             History.ForEach(f =>
             {
                 Console.WriteLine($"Battle against {f.Opponent.Name}");

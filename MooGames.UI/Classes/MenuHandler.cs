@@ -1,5 +1,6 @@
 ﻿using Games.Data.Interfaces;
 using MooGame.Classes;
+using MooGames.Menu;
 using MooGames.Menu.Classes.Common;
 using MooGames.Menu.Interfaces;
 
@@ -9,11 +10,29 @@ public class MenuHandler
 {
     private readonly IUserInterface _userInterface;
     private readonly IHighscoreHandler _highscoreHandler;
+    private readonly MooGame _mooGame;
+    private readonly Highscore _highscore;
+    private readonly Dictionary<string, Action> _menuActions;
 
-    public MenuHandler(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
+    public MenuHandler( IUserInterface userInterface, 
+                        IHighscoreHandler highscoreHandler,
+                        MooGame mooGame,
+                        Highscore highscore)
     {
-        _userInterface = userInterface;
-        _highscoreHandler = highscoreHandler;
+        _userInterface = userInterface ?? throw new ArgumentNullException(nameof(userInterface));
+        _highscoreHandler = highscoreHandler ?? throw new ArgumentNullException(nameof(highscoreHandler));
+        _mooGame = mooGame ?? throw new ArgumentNullException(nameof(mooGame));
+        _highscore = highscore ?? throw new ArgumentNullException(nameof(highscore));
+
+
+        _menuActions = new Dictionary<string, Action>
+        {
+            {Messages.MenuChoice1, RunMooGame },
+            {Messages.MenuChoice2, ShowGameRules },
+            {Messages.MenuChoice3, ShowHighscore },
+            {Messages.MenuChoice4, ShowGameNotReleasedMessage },
+            {Messages.QuitApplication, QuitApplication }
+        };
     }
 
     public string GetUserChoice()
@@ -25,36 +44,45 @@ public class MenuHandler
 
     public void RunMenuAction(string userInput)
     {
-        var mooGame = new MooGame(_userInterface, _highscoreHandler);
-        var highscore = new Highscore(_userInterface, _highscoreHandler);
-
+       
         userInput = userInput.ToUpper();
 
-        if (userInput == Messages.MenuChoice1)
+        if (_menuActions.TryGetValue(userInput, out var action))
         {
-            Console.Clear();
-            mooGame.RunMooGame();
-        }
-        else if (userInput == Messages.MenuChoice2)
-        {
-            _userInterface.Write(Messages.GameRules);
-            
-        }
-        else if (userInput == Messages.MenuChoice3)
-        {
-            highscore.ShowHighscore();
-        }
-        else if (userInput == Messages.MenuChoice4)
-        {
-            _userInterface.Write(Messages.GameNotReleaseYet);
-        }
-        else if (userInput == Messages.QuitApplication)
-        {
-            _userInterface.Write(Messages.ThankYouForPlayingMessage);
+            action();
         }
         else
         {
             _userInterface.Write(Messages.InvalidChoiceMessage);
         }
+
     }
+
+    private void RunMooGame()
+    {
+        Console.Clear();
+        _mooGame.RunMooGame();
+    }
+
+    private void ShowGameRules()
+    {
+        _userInterface.Write(Messages.GameRules);
+    }
+
+    private void ShowHighscore()
+    {
+        _highscore.ShowHighscore();
+    }
+
+    private void ShowGameNotReleasedMessage()
+    {
+        _userInterface.Write(Messages.GameNotReleaseYet);
+    }
+
+    private void QuitApplication()
+    {
+        _userInterface.Write(Messages.ThankYouForPlayingMessage);
+    }
+
+
 }

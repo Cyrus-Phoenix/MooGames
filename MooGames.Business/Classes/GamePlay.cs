@@ -13,17 +13,15 @@ namespace MooGame.Classes
             _gameState = gameState;
         }
 
-
         public int PlayGame(string correctGameNumber)
         {
             string guessedNumber;
             int numberOfGuesses = 0;
             string userGuessResault = string.Empty;
+            string winCondition = "BBBB";
 
-            while (userGuessResault != "BBBB")
-            {
-                //IDEA create variable correctAnswer = "BBBB"
-               
+            while (userGuessResault != winCondition)
+            {  
                 guessedNumber = _userInterface.Read();
              
                 if (guessedNumber.ToUpper() == "Q")
@@ -31,17 +29,12 @@ namespace MooGame.Classes
                     _gameState.IsActive = false;
                     return 0;
                 }
-                int parsedNumber;
-                if(!int.TryParse(guessedNumber, out parsedNumber))
+                
+                if(!IsValidGuess(guessedNumber))
                 {
-                    _userInterface.Write("Invalid input. Guess has to be a 4 digit integer number");
                     continue;
                 }
-                else if(guessedNumber.Length != 4)
-                {
-                    _userInterface.Write("Invalid input. Please enter a 4 digit number\n");
-                    continue;
-                }
+                
 
                 numberOfGuesses++;
                 userGuessResault = CheckUserGuess(correctGameNumber, guessedNumber);
@@ -56,23 +49,7 @@ namespace MooGame.Classes
 
         public bool PlayAgainOption()
         {
-            while (true)
-            {
-                _userInterface.Write(Messages.ReplayChoiceMessage);
-                string answer = _userInterface.Read();
-                if (answer.ToUpper() == "Y")
-                {
-                    return true;
-                }
-                else if (answer.ToUpper() == "N")
-                {
-                    return false;
-                }
-                else
-                {
-                    _userInterface.Write(Messages.InvalidReplayChoiceMessage);
-                }
-            }
+            return GetReplayChoice();
         }
 
         public static string CheckUserGuess(string correctGameNumber, string userGuess)
@@ -89,5 +66,49 @@ namespace MooGame.Classes
             return new string('B', bullCount) + new string('C', cowCount);
         }
 
+
+        private bool GetReplayChoice()
+        {
+            while (true)
+            {
+                _userInterface.Write(Messages.ReplayChoiceMessage);
+                string answer = _userInterface.Read().ToUpper();
+
+                if (answer == "Y")
+                {
+                    return true;
+                }
+                else if (answer == "N")
+                {
+                    return false;
+                }
+                else
+                {
+                    _userInterface.Write(Messages.InvalidReplayChoiceMessage);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Validates the user's guessed number.
+        /// </summary>
+        /// <param name="guessedNumber">The guessed number to validate.</param>
+        /// <returns>True if the guessed number is valid, otherwise false.</returns>
+        private bool IsValidGuess(string guessedNumber)
+        {
+            if (!int.TryParse(guessedNumber, out _))
+            {
+                _userInterface.Write(Messages.InvalidStringGuessMessage);
+                return false;
+            }
+
+            if (guessedNumber.Length != 4)
+            {
+                _userInterface.Write(Messages.InvalidDigitLengthMessage);
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -29,7 +29,8 @@ public class MooGame
     public void RunMooGame()
     {
         _userInterface.Write(Messages.EnterNameMessage);
-        string name = _userInterface.Read();    
+        string name = _userInterface.Read();
+        string splitSeparator = "#&#";
 
         var gameNumberGenerator = new GameNumberGenerator();
 
@@ -45,9 +46,9 @@ public class MooGame
             int numberOfGuesses = _gamePlay.PlayGame(correctGameNumber);
             if (!_gameState.IsActive) break;
 
-            var highscoreEntry = name + "#&#" + numberOfGuesses;
+            var highscoreFormat = name + splitSeparator + numberOfGuesses;
 
-            _highscoreHandler.InitializeHighscoreFile(Highscore.DefaultTextFileName, highscoreEntry);
+            _highscoreHandler.InitializeHighscoreFile(Highscore.DefaultTextFileName, highscoreFormat);
             _highscore.ShowHighscore();
 
             _gameState.IsActive = _gamePlay.PlayAgainOption();

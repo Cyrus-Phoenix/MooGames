@@ -11,4 +11,8 @@
     <ProjectReference Include="..\MooGames.Data\Games.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
 </Project>

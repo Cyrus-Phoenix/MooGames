@@ -4,14 +4,12 @@ namespace MooGames.Data;
 
 public class HighScoreHandler : IHighscoreHandler
 {
-
-
-    public void InitializeHighscoreFile(string fileName, string splitIdentifier)
+    public void InitializeHighscoreFile(string fileName, string highscoreFormat)
     {
 
         using (StreamWriter streamWriter = new StreamWriter(fileName, append: true))
         {
-            streamWriter.WriteLine(splitIdentifier);
+            streamWriter.WriteLine(highscoreFormat);
         }
     }
     public StreamReader ReadHighscoreFile(string fileName)

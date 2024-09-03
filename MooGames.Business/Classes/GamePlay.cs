@@ -1,7 +1,7 @@
-﻿using MooGames.Menu.Interfaces;
-using MooGames.Menu.Classes.Common;
+﻿using Games.Common.Interfaces;
+using Games.Common.Classes;
 
-namespace MooGame.Classes
+namespace Games.Classes
 {
     public class GamePlay
     {

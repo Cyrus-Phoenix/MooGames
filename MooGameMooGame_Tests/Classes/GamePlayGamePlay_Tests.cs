@@ -1,10 +1,10 @@
 ﻿
-using MooGame.Classes;
-using MooGames.Menu.Interfaces;
+using Games.Classes;
+using Games.Common.Interfaces;
 using Moq;
 
 
-namespace MooGame.ClassesMooGame.Classes.GamePlay_Tests
+namespace Games.ClassesMooGame.Classes.GamePlay_Tests
 {
     [TestClass()]
     public class GamePlay_Tests

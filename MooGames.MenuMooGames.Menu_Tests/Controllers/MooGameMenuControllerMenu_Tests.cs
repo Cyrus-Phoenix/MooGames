@@ -1,11 +1,10 @@
-﻿using MooGames.Menu.Classes;
-using MooGames.Menu.Classes.Common;
-using MooGames.Menu.Interfaces;
+﻿using Games.Common.Classes;
+using Games.Common.Interfaces;
 using Games.Data.Interfaces;
 using Moq;
-using MooGame.Classes;
+using Games.Classes;
 
-namespace MooGames.Menu.ControllerMooGames.Menu.Controller_Tests
+namespace Games.Common.ControllerMooGames.Menu.Controller_Tests
 {
     [TestClass()]
     public class MooGameMenuControllerMenu_Tests

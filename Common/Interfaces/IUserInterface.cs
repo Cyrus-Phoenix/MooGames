@@ -1,4 +1,4 @@
-﻿namespace MooGames.Menu.Interfaces;
+﻿namespace Games.Common.Interfaces;
 
 public interface IUserInterface
 {

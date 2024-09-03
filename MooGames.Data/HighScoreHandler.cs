@@ -1,6 +1,6 @@
 ﻿using Games.Data.Interfaces;
 
-namespace MooGames.Data;
+namespace Games.Data;
 
 public class HighScoreHandler : IHighscoreHandler
 {

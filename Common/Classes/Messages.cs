@@ -1,4 +1,4 @@
-﻿namespace MooGames.Menu.Classes.Common;
+﻿namespace Games.Common.Classes;
 
 public class Messages
 {

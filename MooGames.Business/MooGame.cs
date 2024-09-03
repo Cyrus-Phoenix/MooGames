@@ -1,9 +1,9 @@
 ﻿using Games.Data.Interfaces;
-using MooGame.Classes;
-using MooGames.Menu.Classes.Common;
-using MooGames.Menu.Interfaces;
+using Games.Classes;
+using Games.Common.Classes;
+using Games.Common.Interfaces;
 
-namespace MooGames.Menu;
+namespace Games.Common;
 
 public class MooGame
 {

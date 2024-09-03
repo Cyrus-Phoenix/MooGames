@@ -1,4 +1,4 @@
-﻿namespace MooGames.MooGame.Classes;
+﻿namespace Games.MooGame.Classes;
 
 public class PlayerData
 {

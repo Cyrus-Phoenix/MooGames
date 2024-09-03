@@ -1,10 +1,8 @@
 ﻿using Games.Data.Interfaces;
-using MooGame.Classes;
-using MooGames.Menu;
-using MooGames.Menu.Classes.Common;
-using MooGames.Menu.Interfaces;
+using Games.Classes;
+using Games.Common.Interfaces;
 
-namespace MooGames.Menu.Classes;
+namespace Games.Common.Classes;
 
 public class MenuHandler
 {

@@ -1,6 +1,6 @@
-﻿using MooGames.Menu.Interfaces;
+﻿using Games.Common.Interfaces;
 
-namespace MooGames.Menu.Classes.Common;
+namespace Games.Common.Classes;
 
 public class ConsoleUserinterface : IUserInterface
 {

@@ -1,8 +1,8 @@
 ﻿using Games.Data.Interfaces;
-using MooGames.Menu.Interfaces;
-using MooGames.MooGame.Classes;
+using Games.Common.Interfaces;
+using Games.MooGame.Classes;
 
-namespace MooGame.Classes;
+namespace Games.Classes;
 
 public class Highscore
 {

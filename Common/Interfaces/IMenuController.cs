@@ -1,4 +1,4 @@
-﻿namespace MooGame.Interfaces;
+﻿namespace Games.Interfaces;
 
 public interface IMenuController
 {

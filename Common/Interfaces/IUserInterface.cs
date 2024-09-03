@@ -5,4 +5,6 @@ public interface IUserInterface
     void Write(string message);
 
     string Read();
+
+    void Clear();
 }

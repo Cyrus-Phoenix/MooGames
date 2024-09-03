@@ -3,6 +3,7 @@ using Games.Data;
 using Games.Common.Classes;
 using Games.Common.Controller;
 using Games.Common.Interfaces;
+using MooGame;
 
 namespace Games.UI;
 
@@ -11,10 +12,11 @@ class MainClass
     public static void Main(string[] args)
     {
         IUserInterface userInterface = new ConsoleUserinterface();
-        IHighscoreHandler highscoreHandler = new HighScoreHandler();
-        MenuController menuController = new MenuController(userInterface, highscoreHandler);
+        IGame mooGame = new MooGame.GameRunner();
+        IGame arenaGame = new ArenaFighter.GameRunner();
 
-        userInterface.Write(Messages.WelcomeMessage);
+
+        MenuController menuController = new MenuController(userInterface, mooGame, arenaGame);
         menuController.RunMenu();
     }
 

@@ -13,4 +13,9 @@ public class ConsoleUserinterface : IUserInterface
     {
         return Console.ReadLine()?.Trim() ?? string.Empty;
     }
+
+    public void Clear()
+    {
+        Console.Clear();
+    }
 }

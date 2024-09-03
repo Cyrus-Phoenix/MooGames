@@ -1,7 +1,7 @@
 ﻿using Games.Common.Interfaces;
 using Games.Common.Classes;
 
-namespace Games.Classes
+namespace MooGame.Classes
 {
     public class GamePlay
     {

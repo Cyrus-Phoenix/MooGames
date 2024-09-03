@@ -1,4 +1,4 @@
-﻿namespace Games.Classes;
+﻿namespace MooGame.Classes;
 
 public class GameState
 {

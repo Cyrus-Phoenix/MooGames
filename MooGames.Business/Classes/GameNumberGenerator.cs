@@ -1,4 +1,4 @@
-﻿namespace Games.Classes;
+﻿namespace MooGame.Classes;
 
 internal class GameNumberGenerator
 {

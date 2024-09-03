@@ -1,8 +1,10 @@
 ﻿using Games.Data.Interfaces;
-using Games.Classes;
 using Games.Interfaces;
 using Games.Common.Classes;
 using Games.Common.Interfaces;
+using MooGame;
+using Games.Menu.Classes;
+
 
 
 namespace  Games.Common.Controller;
@@ -10,23 +12,19 @@ namespace  Games.Common.Controller;
 public class MenuController : IMenuController
 {
     private readonly IUserInterface _userInterface;
-    private readonly IHighscoreHandler _highscoreHandler;
-    private readonly MooGame _mooGame;
-    private readonly Highscore _highscore;
-   
+    private readonly IGame _mooGame;
+    private readonly IGame _arenaGame;
 
-    public MenuController(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
+    public MenuController(IUserInterface userInterface,IGame mooGame, IGame arenaGame)
     {
         _userInterface = userInterface;
-        _highscoreHandler = highscoreHandler;
+        _mooGame = mooGame;
+        _arenaGame = arenaGame;
 
-        _mooGame = new MooGame(_userInterface, _highscoreHandler);
-        _highscore = new Highscore(_userInterface, _highscoreHandler);
     }
-
     public void RunMenu()
     {
-        var menuHandler = new MenuHandler(_userInterface, _highscoreHandler, _mooGame, _highscore);
+        var menuHandler = new MenuHandler(_userInterface, _mooGame, _arenaGame);
         bool menuIsActive = true;
 
         while (menuIsActive)

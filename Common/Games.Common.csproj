@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Interfaces\IGame.cs" />
     <Compile Include="Interfaces\IMenuController.cs" />
     <Compile Include="Interfaces\IUserInterface.cs" />
   </ItemGroup>

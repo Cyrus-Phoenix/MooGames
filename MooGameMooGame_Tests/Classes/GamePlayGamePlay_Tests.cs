@@ -1,5 +1,4 @@
-﻿
-using Games.Classes;
+﻿using MooGame.Classes;
 using Games.Common.Interfaces;
 using Moq;
 

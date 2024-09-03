@@ -1,8 +1,7 @@
 ﻿using Games.Common.Classes;
 using Games.Common.Interfaces;
-using Games.Data.Interfaces;
 using Moq;
-using Games.Classes;
+using Games.Menu.Classes;
 
 namespace Games.Common.ControllerMooGames.Menu.Controller_Tests
 {
@@ -15,24 +14,18 @@ namespace Games.Common.ControllerMooGames.Menu.Controller_Tests
         public void RunMenuRunMenu_InvalidChoice_DisplaysInvalidChoiceMessage()
         {
             //Arrange
-            // Create a new mock object for the IUserInterface. 
-            // This creates a "fake" user interface that we can control in our test.
             var mockUserInterface = new Mock<IUserInterface>();
-            var mockHighscoreHandler = new Mock<IHighscoreHandler>();
-            var mockMooGame = new Mock<MooGame>(mockUserInterface.Object, mockHighscoreHandler.Object);
-            var mockHighscore = new Mock<Highscore>(mockUserInterface.Object, mockHighscoreHandler.Object);
+            var mockMooGame = new Mock<IGame>();
+            var mockArenaGame = new Mock<IGame>();
 
-
-            // The .Object property on a Mock<T> gives you the actual object that has been mocked.
-            // In this case, it gives you an object that implements IUserInterface.
-            // This object doesn't do anything by default, but you can set up expectations and return values on it.
-            var menuHandler = new MenuHandler(mockUserInterface.Object, mockHighscoreHandler.Object, mockMooGame.Object, mockHighscore.Object);
+            //Assert
+            var menuHandler = new MenuHandler(mockUserInterface.Object, mockMooGame.Object, mockArenaGame.Object);
 
             // This is just a string that represents an invalid choice in the menu.
             var invalidChoice = " ";
             
             //Assert
-            var validChoices = new List<string> { "1", "2", "3", "4", "Q" };
+            var validChoices = new List<string> { "1", "2", "3", "Q" };
             if(validChoices.Contains(invalidChoice))
             {
                 Assert.Fail($"'{invalidChoice}' is a valid choice but expected an invalid choice");
@@ -53,11 +46,11 @@ namespace Games.Common.ControllerMooGames.Menu.Controller_Tests
         {
             //Arrange
             var mockUserInterface = new Mock<IUserInterface>();
-            var mockHighscoreHandler = new Mock<IHighscoreHandler>();
-            var mockMooGame = new Mock<MooGame>(mockUserInterface.Object, mockHighscoreHandler.Object);
-            var mockHighscore = new Mock<Highscore>(mockUserInterface.Object, mockHighscoreHandler.Object);
+            var mockMooGame = new Mock<IGame>();
+            var mockArenaGame = new Mock<IGame>();
 
-            var menuHandler = new MenuHandler(mockUserInterface.Object, mockHighscoreHandler.Object, mockMooGame.Object, mockHighscore.Object);
+            
+            var menuHandler = new MenuHandler(mockUserInterface.Object, mockMooGame.Object, mockArenaGame.Object);
             var quitApplication = "Q";
 
             //Act

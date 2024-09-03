@@ -1,32 +1,32 @@
 ﻿using Games.Data.Interfaces;
-using Games.Classes;
+using Games.Data;
 using Games.Common.Classes;
 using Games.Common.Interfaces;
 
-namespace Games.Common;
+namespace MooGame.Classes;
 
-public class MooGame
+public class TheMooGame
 {
     #region private readonly declarations
-        private readonly IUserInterface _userInterface;
-        private readonly IHighscoreHandler _highscoreHandler;
-        private readonly Highscore _highscore;
-        private readonly GameState _gameState;
-        private readonly GamePlay _gamePlay;
+    private readonly IUserInterface _userInterface;
+    private readonly IHighscoreHandler _highscoreHandler;
+    private readonly Highscore _highscore;
+    private readonly GameState _gameState;
+    private readonly GamePlay _gamePlay;
     #endregion
 
 
-    public MooGame(IUserInterface userInterface, IHighscoreHandler highscoreHandler)
+    public TheMooGame(IUserInterface userInterface)
     {
         _userInterface = userInterface ?? throw new ArgumentNullException(nameof(userInterface));
-        _highscoreHandler = highscoreHandler ?? throw new ArgumentNullException(nameof(highscoreHandler));
-        _highscore = new Highscore(userInterface, highscoreHandler);
+        _highscoreHandler = new HighScoreHandler();
+        _highscore = new Highscore(userInterface, _highscoreHandler);
         _gameState = new GameState();
         _gamePlay = new GamePlay(userInterface, _gameState);
-     
+
     }
 
-    public void RunMooGame()
+    public void RunGame()
     {
         _userInterface.Write(Messages.EnterNameMessage);
         string name = _userInterface.Read();
@@ -40,7 +40,7 @@ public class MooGame
 
             _userInterface.Write(Messages.NewGameMessage);
             //comment out or remove to play real games!
-            _userInterface.Write("For practice, secret number is: " + correctGameNumber + "\n"); 
+            _userInterface.Write("For practice, secret number is: " + correctGameNumber + "\n");
             _userInterface.Write(Messages.EnterGuessMessage);
 
             int numberOfGuesses = _gamePlay.PlayGame(correctGameNumber);

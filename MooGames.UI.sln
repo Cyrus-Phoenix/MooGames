@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooGames.MenuMooGames.Menu_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooGameMooGame_Tests", "MooGameMooGame_Tests\MooGameMooGame_Tests.csproj", "{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArenaFighter", "..\..\..\Egna projekt\Mina egna spel\ArenaFighterUpdated\ArenaFighter1.1\ArenaFighter.csproj", "{90885DEE-8726-4232-BE6E-5CDDA02237CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArenaFighter", "ArenaFighter\ArenaFighter.csproj", "{C83216CF-ABDD-405E-BC15-E9ECF19F2270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624AC372-EBE9-4B08-A6B6-8DFE6C7A84AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90885DEE-8726-4232-BE6E-5CDDA02237CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90885DEE-8726-4232-BE6E-5CDDA02237CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90885DEE-8726-4232-BE6E-5CDDA02237CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90885DEE-8726-4232-BE6E-5CDDA02237CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83216CF-ABDD-405E-BC15-E9ECF19F2270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83216CF-ABDD-405E-BC15-E9ECF19F2270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83216CF-ABDD-405E-BC15-E9ECF19F2270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83216CF-ABDD-405E-BC15-E9ECF19F2270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

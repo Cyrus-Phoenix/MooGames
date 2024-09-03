@@ -1,41 +1,36 @@
-﻿using Games.Data.Interfaces;
-using Games.Classes;
-using Games.Common.Interfaces;
+﻿using Games.Common.Interfaces;
+using Games.Common.Classes;
 
-namespace Games.Common.Classes;
+
+namespace Games.Menu.Classes;
 
 public class MenuHandler
 {
     private readonly IUserInterface _userInterface;
-    private readonly IHighscoreHandler _highscoreHandler;
-    private readonly MooGame _mooGame;
-    private readonly Highscore _highscore;
+    private readonly IGame _mooGame = new MooGame.GameRunner();
+    private readonly IGame _arenaGame = new ArenaFighter.GameRunner();
     private readonly Dictionary<string, Action> _menuActions;
 
-    public MenuHandler( IUserInterface userInterface, 
-                        IHighscoreHandler highscoreHandler,
-                        MooGame mooGame,
-                        Highscore highscore)
+
+    public MenuHandler(IUserInterface userInterface, IGame mooGame, IGame arenaGame)
     {
         _userInterface = userInterface ?? throw new ArgumentNullException(nameof(userInterface));
-        _highscoreHandler = highscoreHandler ?? throw new ArgumentNullException(nameof(highscoreHandler));
         _mooGame = mooGame ?? throw new ArgumentNullException(nameof(mooGame));
-        _highscore = highscore ?? throw new ArgumentNullException(nameof(highscore));
-
+        _arenaGame = arenaGame ?? throw new ArgumentNullException(nameof(arenaGame));
 
         _menuActions = new Dictionary<string, Action>
-        {
-            {Messages.MenuChoice1, RunMooGame },
-            {Messages.MenuChoice2, ShowGameRules },
-            {Messages.MenuChoice3, ShowHighscore },
-            {Messages.MenuChoice4, ShowGameNotReleasedMessage },
-            {Messages.QuitApplication, QuitApplication }
-        };
+            {
+                {Messages.MenuChoice1, RunMooGame},
+                {Messages.MenuChoice2, RunArenaGame },
+                {Messages.MenuChoice3, ShowGameNotReleasedMessage},
+                {Messages.QuitApplication, QuitApplication }
+            };
     }
 
     public string GetUserChoice()
     {
-        _userInterface.Write(Messages.Menu);
+        _userInterface.Write(Messages.GamesWelcomeMessage);
+        _userInterface.Write(Messages.GamesMenuOptions);
         _userInterface.Write(Messages.MenuChoiceMessage);
         return _userInterface.Read();
     }
@@ -58,18 +53,13 @@ public class MenuHandler
 
     private void RunMooGame()
     {
-        Console.Clear();
-        _mooGame.RunMooGame();
+         Console.Clear();
+        _mooGame.RunGame();
     }
 
-    private void ShowGameRules()
+    private void RunArenaGame() 
     {
-        _userInterface.Write(Messages.GameRules);
-    }
-
-    private void ShowHighscore()
-    {
-        _highscore.ShowHighscore();
+        _arenaGame.RunGame();
     }
 
     private void ShowGameNotReleasedMessage()

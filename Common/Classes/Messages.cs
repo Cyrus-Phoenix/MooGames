@@ -2,7 +2,8 @@
 
 public class Messages
 {
-   public static string MooGameWelcomeMessage { get; } = $@"
+    // ************ Game Welcome Titles ************
+    public static string MooGameWelcomeMessage { get; } = $@"
                     ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗ 
                     ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗
                     ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗         ██║   ██║   ██║
@@ -61,7 +62,6 @@ public class Messages
                       ░   ▒     ░░   ░    ░      ░   ░ ░   ░   ▒    ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░     ░░   ░ 
                           ░  ░   ░        ░  ░         ░       ░  ░        ░        ░  ░  ░  ░            ░  ░   ░     
 ";
-
 
     // ************ Game ************
     public static string NewGameMessage { get; } = "New game started!\n";

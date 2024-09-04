@@ -6,6 +6,7 @@ namespace ArenaFighter
     public class GameRunner : IGame
     {
         IUserInterface userInterface = new ConsoleUserinterface();
+
         public void RunGame()
         {
            GameMenu gameMenu = new GameMenu(userInterface);

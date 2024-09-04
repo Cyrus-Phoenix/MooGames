@@ -23,7 +23,7 @@ namespace ArenaFighter
             while (Player.Health > 0 && Opponent.Health > 0)
             {
                 this.StartRound();
-                Console.WriteLine("Press any key to continue.");
+                Console.WriteLine("Press any key to continue the fight.");
                 Console.ReadKey();
             }
             Game.History.Add(this);

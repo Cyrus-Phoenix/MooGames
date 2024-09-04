@@ -29,10 +29,10 @@ public class GameMenu
 
     public void RunMenuAction()
     {
+        _userInterface.Write(Messages.MooGameWelcomeMessage);
         bool menuIsActive = true;
         while (menuIsActive)
         {
-            _userInterface.Write(Messages.MooGameWelcomeMessage);
             _userInterface.Write(Messages.MooGameMenuOptions);
             string userInput = _userInterface.Read().ToUpper();
 

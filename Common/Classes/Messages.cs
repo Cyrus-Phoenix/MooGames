@@ -2,7 +2,7 @@
 
 public class Messages
 {
-    // Anledning till detta är att få bort alla magic strings och göra det enklare att ändra i framtiden
+    // ************ Game Welcome Titles ************
     public static string MooGameWelcomeMessage { get; } = $@"
                     ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗ 
                     ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗
@@ -62,7 +62,6 @@ public class Messages
                       ░   ▒     ░░   ░    ░      ░   ░ ░   ░   ▒    ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░     ░░   ░ 
                           ░  ░   ░        ░  ░         ░       ░  ░        ░        ░  ░  ░  ░            ░  ░   ░     
 ";
-
 
     // ************ Game ************
     public static string NewGameMessage { get; } = "New game started!\n";

@@ -26,7 +26,6 @@ public class Highscore
             {
                 List<PlayerData> playersHighscoreResults = UpdateHighscore(input);
                 playersHighscoreResults.Sort((currentPlayer, previousPlayer) => currentPlayer.Average().CompareTo(previousPlayer.Average()));
-                //_userInterface.Write("Player   games average");
                 PrintHighscore(playersHighscoreResults);
             }
         }
@@ -54,7 +53,6 @@ public class Highscore
             if (indexPosition < 0)
             {
                 results.Add(playerData);
-                //This is here for the game to add first playthrough to the highscore list
                 indexPosition = results.IndexOf(playerData);
                 playerData.UpdateTotalGuesses(guesses);
             }
@@ -75,28 +73,24 @@ public class Highscore
         int gamesColumnWidth = 7;
         int averageColumnWidth = 7;
 
-        // Calculate total table width
-        int totalWidth = nameColumnWidth + gamesColumnWidth + averageColumnWidth + 10;
 
-        // Calculate padding for centering the table
-        int consoleWidth = Console.WindowWidth;
-        int tablePadding = (consoleWidth - totalWidth) / 2;
-        string tablePaddingString = new string(' ', tablePadding);
+        int totalTableWidth = nameColumnWidth + gamesColumnWidth + averageColumnWidth + 10;
 
-        // Calculate padding for centering the title
+
+        int consoleWidth;
+        string tablePaddingString;
+        CenteringHighscoreTable(totalTableWidth, out consoleWidth, out tablePaddingString);
+
+
         string title = "HighScore";
-        int titlePadding = (consoleWidth - title.Length) / 2;
-        string titlePaddingString = new string(' ', titlePadding);
+        string centerTitle = CenteringHighscoreTitle(consoleWidth, title);
 
-        // Print title
-        _userInterface.Write(titlePaddingString + title);
+        
+        _userInterface.Write(centerTitle + title);
 
-        // Print header
-        _userInterface.Write(tablePaddingString + new string('═', totalWidth));
-        _userInterface.Write(tablePaddingString + $"║ {"Player".PadRight(nameColumnWidth)} ║ {"Games".PadRight(gamesColumnWidth)} ║ {"Average".PadRight(averageColumnWidth)} ║");
-        _userInterface.Write(tablePaddingString + new string('═', totalWidth));
+        
+        HighscoreHeader(nameColumnWidth, gamesColumnWidth, averageColumnWidth, totalTableWidth, tablePaddingString);
 
-        // Print each player's high score
         foreach (PlayerData player in playersHighscoreResults)
         {
             string name = player.Name.PadRight(nameColumnWidth);
@@ -105,6 +99,27 @@ public class Highscore
             _userInterface.Write(tablePaddingString + $"║ {name} ║ {games} ║ {average} ║");
         }
 
-        _userInterface.Write(tablePaddingString + new string('═', totalWidth));
+        _userInterface.Write(tablePaddingString + new string('═', totalTableWidth));
+    }
+
+    private void HighscoreHeader(int nameColumnWidth, int gamesColumnWidth, int averageColumnWidth, int totalTableWidth, string tablePaddingString)
+    {
+        _userInterface.Write(tablePaddingString + new string('═', totalTableWidth));
+        _userInterface.Write(tablePaddingString + $"║ {"Player".PadRight(nameColumnWidth)} ║ {"Games".PadRight(gamesColumnWidth)} ║ {"Average".PadRight(averageColumnWidth)} ║");
+        _userInterface.Write(tablePaddingString + new string('═', totalTableWidth));
+    }
+
+    private static string CenteringHighscoreTitle(int consoleWidth, string title)
+    {
+        int titlePadding = (consoleWidth - title.Length) / 2;
+        string titlePaddingString = new string(' ', titlePadding);
+        return titlePaddingString;
+    }
+
+    private static void CenteringHighscoreTable(int totalTableWidth, out int consoleWidth, out string tablePaddingString)
+    {
+        consoleWidth = Console.WindowWidth;
+        int tablePadding = (consoleWidth - totalTableWidth) / 2;
+        tablePaddingString = new string(' ', tablePadding);
     }
 }

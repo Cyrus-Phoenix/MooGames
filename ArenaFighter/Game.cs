@@ -33,7 +33,6 @@ namespace ArenaFighter
                     CreateBattle();
                 else if (key.KeyChar == '2')
                     break;
-                Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
             }
             Retire();
@@ -44,7 +43,7 @@ namespace ArenaFighter
             Console.WriteLine($"\nCareer of {Player.Name}");
             History.ForEach(f =>
             {
-                Console.WriteLine($"Battle against {f.Opponent.Name}");
+                Console.WriteLine($"\nBattle against {f.Opponent.Name}");
                 for (int i = 0; i < f.BattleLog.Count; ++i)
                 {
                     Console.WriteLine($"Round {i + 1} against {f.Opponent.Name}");

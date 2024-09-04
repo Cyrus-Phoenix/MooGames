@@ -29,6 +29,7 @@ public class MenuHandler
 
     public string GetUserChoice()
     {
+        _userInterface.Clear();
         _userInterface.Write(Messages.GamesWelcomeMessage);
         _userInterface.Write(Messages.GamesMenuOptions);
         _userInterface.Write(Messages.MenuChoiceMessage);
@@ -53,12 +54,13 @@ public class MenuHandler
 
     private void RunMooGame()
     {
-         Console.Clear();
+        _userInterface.Clear();
         _mooGame.RunGame();
     }
 
     private void RunArenaGame() 
     {
+        _userInterface.Clear();
         _arenaGame.RunGame();
     }
 

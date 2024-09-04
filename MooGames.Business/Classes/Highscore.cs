@@ -26,7 +26,6 @@ public class Highscore
             {
                 List<PlayerData> playersHighscoreResults = UpdateHighscore(input);
                 playersHighscoreResults.Sort((currentPlayer, previousPlayer) => currentPlayer.Average().CompareTo(previousPlayer.Average()));
-                //_userInterface.Write("Player   games average");
                 PrintHighscore(playersHighscoreResults);
             }
         }

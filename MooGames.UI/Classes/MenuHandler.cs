@@ -66,13 +66,15 @@ public class MenuHandler
 
     private void ShowGameNotReleasedMessage()
     {
+        _userInterface.Clear();
         _userInterface.Write(Messages.GameNotReleaseYet);
+        _userInterface.Write(Messages.PressEnterToContinueMessage);
+        _userInterface.Read();
     }
 
     private void QuitApplication()
     {
         _userInterface.Write(Messages.ThankYouForPlayingMessage);
     }
-
 
 }

@@ -65,6 +65,7 @@ public class Messages
 
     // ************ Game ************
     public static string NewGameMessage { get; } = "New game started!\n";
+    public static string PressEnterToContinueMessage { get; } = "Press enter to continue.\n";
     public static string EnterGuessMessage { get; } = "Please enter your guess or enter letter 'Q' to quit and lose all progress made this round.";
     public static string InvalidGuessNoRepeatingdigitsMessage { get; } = "Invalid guess. Please enter a 4-digit number with no repeating digits.";
     public static string InvalidStringGuessMessage { get; } = "Invalid input. Guess has to be a 4 digit integer number";
